@@ -5,9 +5,9 @@
   }
 
 body {
-font-family: Aptos, sans-serif;
+font-family: Aptos, Aptos;
 line-height: 1.6;
-color: #9d8189;
+color: #2b2d42;
 background-color: #fffe5d9;
 }
 
@@ -15,7 +15,7 @@ background-color: #fffe5d9;
 
 header {
 background-color: #fffe5d9;
-border-bottom: 1px solid #9d8189;
+border-bottom: 1px solid #2b2d42;
 padding: 20px 10%;
 }
 
@@ -26,12 +26,12 @@ align-items: center;
 }
 
 nav h1 {
-font-size: 24px;
+font-size: 22px;
 }
 
 .nav-links a {
 text-decoration: none;
-color: #333;
+color: #2b2d42;
 margin-left: 20px;
 font-weight: bold;
 }
@@ -107,7 +107,7 @@ margin-bottom: 5px;
 }
 
 .date {
-color: #777;
+color: #2b2d42;
 margin-bottom: 15px;
 }
 
@@ -118,5 +118,5 @@ text-align: center;
 padding: 25px;
 background-color: white;
 border-top: 1px solid #9d8189;
-color: #f4acb7;
+color: #2b2d42;
 }
