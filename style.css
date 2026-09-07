@@ -1,3 +1,6 @@
+/* =========================
+   FONTS + BASIC SETTINGS
+========================= */
 
 * {
     box-sizing: border-box;
@@ -5,272 +8,427 @@
 
 body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-                 Roboto, Helvetica, Arial, sans-serif;
+
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
 
     background-color: #F5F0E6;
+
     color: #111111;
-    line-height: 1.6;
 }
 
 
-/* Navigation Bar */
+/* =========================
+   PAGE SPACING
+========================= */
+
+.page {
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
 
 nav {
     display: flex;
-    justify-content: space-between;
+
+    justify-content: flex-end;
+
     align-items: center;
 
-    padding: 22px 7%;
+    padding: 40px 5%;
 
-    background-color: #071C3A;
-
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    gap: 38px;
 }
 
-.logo {
-    font-size: 26px;
-    font-weight: 700;
-    color: #F5F0E6;
-}
 
-.nav-links {
-    display: flex;
-    gap: 35px;
-}
-
-.nav-links a {
+nav a {
     text-decoration: none;
-
-    color: #F5F0E6;
-
-    font-size: 19px;
-
-    font-weight: 600;
-
-    transition: opacity 0.2s;
-}
-
-.nav-links a:hover {
-    opacity: 0.7;
-}
-
-
-/* Homepage */
-
-.hero {
-    max-width: 1100px;
-
-    margin: auto;
-
-    padding: 110px 60px;
-
-    text-align: center;
-}
-
-.hero h1 {
-    font-size: 52px;
 
     color: #071C3A;
 
-    margin-bottom: 20px;
-}
+    font-size: 26px;
 
-.hero p {
-    font-size: 20px;
-
-    max-width: 700px;
-
-    margin: auto;
-}
-
-
-/* Button */
-
-.button {
-    display: inline-block;
-
-    margin-top: 35px;
-
-    padding: 15px 28px;
-
-    background-color: #071C3A;
-
-    color: #F5F0E6;
-
-    text-decoration: none;
-
-    font-size: 17px;
-
-    font-weight: 600;
-
-    border-radius: 8px;
+    font-weight: 400;
 
     transition: 0.2s;
 }
 
-.button:hover {
-    background-color: #000000;
+
+nav a:hover {
+    opacity: 0.55;
 }
 
 
-/* Featured Section */
-
-.featured {
-    max-width: 1100px;
-
-    margin: auto;
-
-    padding: 40px 60px 80px;
-
-    text-align: center;
+nav a.active {
+    font-weight: 600;
 }
 
-.featured h2 {
-    font-size: 32px;
+
+/* =========================
+   LARGE PAGE TITLES
+========================= */
+
+.page-title {
+
+    font-size: clamp(70px, 11vw, 190px);
+
+    font-weight: 800;
+
+    letter-spacing: -8px;
+
+    line-height: 0.9;
 
     color: #071C3A;
-}
 
-.card {
-    background-color: #FFFFFF;
+    margin-top: 20px;
 
-    padding: 35px;
-
-    max-width: 650px;
-
-    margin: 30px auto;
-
-    border-radius: 12px;
-
-    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+    margin-bottom: 70px;
 }
 
 
-/* Blog Header */
+/* =========================
+   HOME PAGE
+========================= */
 
-.blog-header {
-    max-width: 1000px;
+.home-content {
 
-    margin: auto;
-
-    padding: 70px 60px 40px;
-
-    text-align: center;
-}
-
-.blog-header h1 {
-    font-size: 48px;
-
-    color: #071C3A;
-}
-
-
-/* Blog Feed */
-
-.blog-container {
     max-width: 900px;
 
     margin: auto;
 
-    padding: 20px 60px 80px;
+    text-align: center;
+
+    padding-top: 80px;
 }
 
 
-/* Individual Post */
+.home-content h2 {
 
-.post {
-    background-color: #FFFFFF;
+    font-size: 40px;
 
-    margin-bottom: 30px;
-
-    padding: 35px 40px;
-
-    border-radius: 12px;
-
-    border-left: 6px solid #071C3A;
-
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-}
-
-.post h2 {
-    margin-top: 0;
-
-    font-size: 27px;
+    font-weight: 500;
 
     color: #071C3A;
 }
 
-.date {
-    color: #555555;
 
-    font-size: 15px;
+.home-content p {
 
-    margin-bottom: 20px;
+    font-size: 25px;
+
+    line-height: 1.4;
+
+    max-width: 750px;
+
+    margin: auto;
 }
 
 
-/* Videos */
+/* =========================
+   ABOUT PAGE
+========================= */
+
+.about-content {
+
+    max-width: 900px;
+
+    margin-left: 8%;
+
+    font-size: 30px;
+
+    line-height: 1.25;
+
+    padding-bottom: 100px;
+}
+
+
+/* =========================
+   BLOG
+========================= */
+
+.blog-container {
+
+    max-width: 900px;
+
+    margin-left: 2%;
+
+    padding-bottom: 80px;
+}
+
+
+.blog-post {
+
+    border: 5px solid #071C3A;
+
+    border-radius: 55px;
+
+    padding: 35px;
+
+    margin-bottom: 50px;
+
+    background-color: #FFFDF8;
+
+    max-width: 800px;
+}
+
+
+.blog-date {
+
+    font-size: 22px;
+
+    margin-bottom: 5px;
+
+    color: #071C3A;
+}
+
+
+.blog-post h2 {
+
+    font-size: 34px;
+
+    margin-top: 0;
+
+    margin-bottom: 25px;
+
+    font-weight: 500;
+}
+
+
+.blog-post p {
+
+    font-size: 22px;
+
+    line-height: 1.4;
+}
+
+
+/* =========================
+   VIDEO CARDS
+========================= */
 
 .video-container {
-    margin-top: 25px;
 
-    border-radius: 8px;
+    max-width: 800px;
 
-    overflow: hidden;
+    margin-left: 2%;
+
+    padding-bottom: 100px;
 }
 
-.video-container iframe {
-    display: block;
+
+.video-date {
+
+    font-size: 24px;
+
+    margin-bottom: 15px;
+
+    color: #071C3A;
+}
+
+
+.video-card {
+
+    border: 5px solid #071C3A;
+
+    border-radius: 55px;
+
+    overflow: hidden;
+
+    background-color: #FFFDF8;
+
+    padding: 20px;
+
+    margin-bottom: 40px;
+}
+
+
+.video-card video {
 
     width: 100%;
 
-    height: 400px;
+    border-radius: 35px;
 
-    border: none;
+    display: block;
 }
 
 
-/* Mobile Friendly */
+.video-card iframe {
+
+    width: 100%;
+
+    height: 430px;
+
+    border: none;
+
+    border-radius: 35px;
+}
+
+
+.video-title {
+
+    font-size: 28px;
+
+    margin: 20px 15px 10px;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+.button {
+
+    display: inline-block;
+
+    background-color: #071C3A;
+
+    color: #F5F0E6;
+
+    text-decoration: none;
+
+    padding: 15px 28px;
+
+    border-radius: 30px;
+
+    font-size: 20px;
+
+    margin-top: 30px;
+
+    transition: 0.2s;
+}
+
+
+.button:hover {
+
+    background-color: #000000;
+}
+
+
+/* =========================
+   PRIVATE EDIT AREA
+========================= */
+
+.editor {
+
+    display: none;
+
+    max-width: 800px;
+
+    margin-left: 2%;
+
+    margin-bottom: 60px;
+
+    padding: 30px;
+
+    border: 3px dashed #071C3A;
+
+    border-radius: 30px;
+}
+
+
+.editor.visible {
+
+    display: block;
+}
+
+
+.editor input,
+.editor textarea {
+
+    width: 100%;
+
+    margin-bottom: 15px;
+
+    padding: 15px;
+
+    font-size: 18px;
+
+    font-family: inherit;
+
+    border: 2px solid #071C3A;
+
+    border-radius: 15px;
+
+    background-color: #FFFDF8;
+}
+
+
+.editor button {
+
+    padding: 15px 25px;
+
+    font-size: 18px;
+
+    border: none;
+
+    border-radius: 25px;
+
+    background-color: #071C3A;
+
+    color: #F5F0E6;
+
+    cursor: pointer;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
 
 @media (max-width: 700px) {
 
     nav {
-        padding: 20px 25px;
-    }
 
-    .logo {
-        font-size: 20px;
-    }
+        padding: 25px 7%;
 
-    .nav-links {
         gap: 15px;
+
+        flex-wrap: wrap;
     }
 
-    .nav-links a {
-        font-size: 16px;
+
+    nav a {
+
+        font-size: 17px;
     }
 
-    .hero {
-        padding: 80px 30px;
+
+    .page-title {
+
+        letter-spacing: -4px;
+
+        margin-top: 50px;
+
+        margin-bottom: 50px;
     }
 
-    .hero h1 {
-        font-size: 38px;
+
+    .about-content {
+
+        margin-left: 2%;
+
+        font-size: 22px;
     }
 
-    .featured,
-    .blog-header,
-    .blog-container {
-        padding-left: 25px;
-        padding-right: 25px;
-    }
 
-    .post {
+    .blog-post {
+
+        border-radius: 35px;
+
         padding: 25px;
     }
 
-    .video-container iframe {
+
+    .video-card iframe {
+
         height: 250px;
     }
 
