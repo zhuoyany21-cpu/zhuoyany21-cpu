@@ -1,11 +1,9 @@
-/* =========================
-   BLOG POSTS
-========================= */
+// BLOG POSTS!!!!!!!!!
 
 function publishPost() {
 
 
-    /* GET THE INPUTS */
+    // GET INPUT!!
 
     const titleInput =
         document.getElementById("postTitle");
@@ -17,7 +15,7 @@ function publishPost() {
         document.getElementById("postFeed");
 
 
-    /* GET WHAT THE USER TYPED */
+    // GET WHAT USER TYPED (me)
 
     const title =
         titleInput.value.trim();
@@ -26,7 +24,7 @@ function publishPost() {
         contentInput.value.trim();
 
 
-    /* MAKE SURE THERE IS A TITLE */
+    // MAKE SURE THERE IS A TLTE FOR THE BLOG POST!
 
     if (
         title === ""
@@ -43,7 +41,7 @@ function publishPost() {
     }
 
 
-    /* MAKE SURE THERE IS CONTENT */
+    // MUST HAVE CONTENT INSIDE THE POST!
 
     if (
         content === ""
@@ -59,10 +57,11 @@ function publishPost() {
 
     }
 
+   // needed a way to insert date without having to manually do it like the title! (not sure if it works, hopefully it does)
+   // tested it and it does in fact work!! (asked claude how to do it)
 
-    /* =========================
-       AUTOMATIC DATE
-    ========================= */
+   
+   // AUTO INSERT DATE
 
     const today =
         new Date();
@@ -79,9 +78,7 @@ function publishPost() {
         );
 
 
-    /* =========================
-       CREATE POST
-    ========================= */
+    // CREATE POST BUTTON!!!!!!!
 
     const post =
         document.createElement("article");
@@ -91,9 +88,7 @@ function publishPost() {
         "post-card";
 
 
-    /* =========================
-       FORMAT PARAGRAPHS
-    ========================= */
+    // THE PARAGRAPH FORMAT
 
     let contentHTML = "";
 
@@ -133,9 +128,7 @@ function publishPost() {
     );
 
 
-    /* =========================
-       PUT EVERYTHING INTO POST
-    ========================= */
+    // PUT EVERYTHING INTO THE POST!!!!!!!!!!!
 
     post.innerHTML = `
 
@@ -170,17 +163,13 @@ function publishPost() {
 
     `;
 
-
-    /* =========================
-       PUT NEW POST AT THE TOP
-    ========================= */
+   // didnt know whether to put new post at the bottom or top. thought to many other wesbsites, new post on top was final decision
+   //NEW POST GOES ON TOP 
 
     feed.prepend(post);
 
 
-    /* =========================
-       CLEAR INPUTS
-    ========================= */
+          // CLEAR INPUT!
 
     titleInput.value = "";
 
@@ -188,15 +177,14 @@ function publishPost() {
 
 }
 
-
-/* =========================
-   DELETE BLOG POST
-========================= */
+// following up on the blog.html, needed a spot the delete the post in case of mess up
+// DELETE BLOG POST
 
 function deletePost(button) {
 
-
-    /* ASK FOR CONFIRMATION */
+   // confirm to delete, could have been accident!!!
+   
+   // ASK FOR DELETION CONFIRMATION
 
     const confirmDelete =
         confirm(
@@ -204,7 +192,7 @@ function deletePost(button) {
         );
 
 
-    /* STOP IF THEY CANCEL */
+    // DO NOT DELETE IF CONFIRMATION WAS NO
 
     if (
         !confirmDelete
@@ -215,13 +203,13 @@ function deletePost(button) {
     }
 
 
-    /* FIND THE POST */
+    // FIND THE POST
 
     const post =
         button.closest(".post-card");
 
-
-    /* DELETE THE POST */
+    // this migth have been redundant but maybe not. put the delete post before
+    // DELETE THE POST
 
     if (
         post
@@ -234,9 +222,9 @@ function deletePost(button) {
 }
 
 
-/* =========================
-   VIDEO POSTS
-========================= */
+// VIDEO POSTS
+// realized too late that this was not neccessary, however claude helped with most of this, most difficult was connectino to my own files
+
 
 function postVideo(event) {
 
@@ -272,7 +260,8 @@ function postVideo(event) {
             }
         );
 
-
+   // this is the point where i thought to myself "why did i do this"
+   
     const videoURL =
         URL.createObjectURL(file);
 
@@ -327,9 +316,9 @@ function postVideo(event) {
         post.querySelector(".play-button");
 
 
-    /* =========================
-       PLAY BUTTON
-    ========================= */
+   
+// PLAY BUTTON FOR VID
+// not sure if works yet, havent tested it yet, havent inserted a vidio yet
 
     playButton.addEventListener(
         "click",
@@ -347,10 +336,8 @@ function postVideo(event) {
     );
 
 
-    /* =========================
-       IF VIDEO IS PAUSED
-       SHOW BUTTON
-    ========================= */
+   // SHOW PLAY BUTTON WHEN VIDEO IS PAUSED
+   // needed a way to turn vid back on (claude suggested)
 
     video.addEventListener(
         "pause",
@@ -372,10 +359,8 @@ function postVideo(event) {
     );
 
 
-    /* =========================
-       IF VIDEO ENDS
-       SHOW BUTTON AGAIN
-    ========================= */
+   // VID ENDS, SHOW BUTTON AGAIN
+   // needed a way to restart video (claude suggested)
 
     video.addEventListener(
         "ended",
@@ -390,10 +375,9 @@ function postVideo(event) {
     );
 
 
-    /* =========================
-       CLEAR FILE INPUT
-    ========================= */
+// CLEAR THE FILE INPUT
 
     event.target.value = "";
 
 }
+// NOT SURE WHETHER OR NOT TO HAVE DELETE VIDEO, MIGHT NOT POST VIDEO EITHER WAY (MAYBE)
