@@ -22,17 +22,25 @@
 <body>
 
 
-    <!-- NAVIGATION -->
+    <!-- TOP RIGHT LINKS -->
 
     <nav>
 
-        <a href="index.html">Home.</a>
+        <a href="index.html">
+            Home.
+        </a>
 
-        <a href="about.html">About Me.</a>
+        <a href="about.html">
+            About Me.
+        </a>
 
-        <a href="blog.html">Blog.</a>
+        <a href="blog.html">
+            Blog.
+        </a>
 
-        <a href="video.html">Video.</a>
+        <a href="video.html">
+            Video.
+        </a>
 
     </nav>
 
@@ -40,7 +48,7 @@
     <main class="page">
 
 
-        <!-- BIG TITLE -->
+        <!-- MAIN TITLE -->
 
         <h1 class="big-title">
 
@@ -49,7 +57,7 @@
         </h1>
 
 
-        <!-- BLOG POSTS -->
+        <!-- ALL BLOG POSTS GO HERE -->
 
         <section
             class="post-feed"
@@ -60,12 +68,17 @@
 
             <article class="post-card">
 
+
+                <!-- DATE -->
+
                 <div class="post-date">
 
                     September 5, 2026
 
                 </div>
 
+
+                <!-- TITLE -->
 
                 <h2 class="post-title">
 
@@ -74,15 +87,24 @@
                 </h2>
 
 
+                <!-- POST CONTENT -->
+
                 <div class="post-content">
 
-                    <p>
-                        When I first started learning Python, I didn’t really know anything about programming at all. I decided to learn it independently because I needed it for robotics, and I was intrigued by the code for our robot.
-                    </p>
 
                     <p>
-                        One of the first concepts I learned was <strong>variables</strong>. I learned that variables help you store information so that you can use it in your program. As an example, I used:
+
+                        When I first started learning Python, I didn’t really know anything about programming at all. I decided to learn it independently because I needed it for robotics, and I was intrigued by the code for our robot.
+
                     </p>
+
+
+                    <p>
+
+                        One of the first concepts I learned was <strong>variables</strong>. I learned that variables help you store information so that you can use it in your program. As an example, I used:
+
+                    </p>
+
 
                     <pre><code>name = "Joey"
 age = 14
@@ -90,13 +112,20 @@ age = 14
 print(name)
 print(age)</code></pre>
 
-                    <p>
-                        This created two variables and printed their values.
-                    </p>
 
                     <p>
-                        Another concept I learned was <strong>if statements</strong>. They allow a program to make decisions based on whether something is true or false. I used this code:
+
+                        This created two variables and printed their values.
+
                     </p>
+
+
+                    <p>
+
+                        Another concept I learned was <strong>if statements</strong>. They allow a program to make decisions based on whether something is true or false. I used this code:
+
+                    </p>
+
 
                     <pre><code>age = 14
 
@@ -105,30 +134,59 @@ if age >= 13:
 else:
     print("You are not a teenager yet!")</code></pre>
 
-                    <p>
-                        This checks whether the age is at least 13. Since the age is 14, the program prints that I am a teenager.
-                    </p>
 
                     <p>
-                        The third concept I learned was <strong>loops</strong>, which are useful if you want to repeat something. For example:
+
+                        This checks whether the age is at least 13. Since the age is 14, the program prints that I am a teenager.
+
                     </p>
+
+
+                    <p>
+
+                        The third concept I learned was <strong>loops</strong>, which are useful if you want to repeat something. For example:
+
+                    </p>
+
 
                     <pre><code>for i in range(500):
     print("Learning Python")</code></pre>
 
+
                     <p>
+
                         This prints “Learning Python” 500 times. Instead of writing the same print() statement 500 times, I can use a loop to repeat it.
+
                     </p>
 
+
                     <p>
+
                         One problem I ran into was forgetting that Python uses <strong>indentation</strong>. Without the correct indentation, the code would not run. Once I figured out that the lines inside my if statements and loops needed to be indented, I was able to fix the problem.
+
                     </p>
 
+
                     <p>
+
                         So far, Python has shown me that coding is a lot of trial and error. You just need to get the hang of it and learn from your mistakes. Hopefully, in the future, I can learn how to build bigger projects and use Python for robotics too!
+
                     </p>
+
 
                 </div>
+
+
+                <!-- DELETE BUTTON -->
+
+                <button
+                    class="delete-post-button"
+                    onclick="deletePost(this)">
+
+                    Delete Post
+
+                </button>
+
 
             </article>
 
@@ -140,10 +198,11 @@ else:
 
         <section class="create-section">
 
+
             <div class="create-box">
 
 
-                <!-- TITLE -->
+                <!-- POST TITLE -->
 
                 <input
                     type="text"
@@ -151,14 +210,14 @@ else:
                     placeholder="type post title here">
 
 
-                <!-- POST -->
+                <!-- POST CONTENT -->
 
                 <textarea
                     id="postContent"
                     placeholder="type new post here and publish"></textarea>
 
 
-                <!-- PUBLISH -->
+                <!-- PUBLISH BUTTON -->
 
                 <button
                     class="publish-button"
@@ -170,6 +229,7 @@ else:
 
 
             </div>
+
 
         </section>
 
