@@ -1,5 +1,15 @@
+/*
+asked claude how to input font I found on canva. they added a link to some font place
+pretty sure its the right font
+checked again to canva and it was the right font
+CALUDE HELPED A LOT FOR THE STYLE
+*/
 @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700;800;900&display=swap');
 
+/*
+chnaged colors many times, settled with this one
+go to coolers color palette
+*/
 
 :root {
 
@@ -37,6 +47,7 @@ body {
 
 /* 
    top navigation!!!
+    needed a design and style for the links up top
 */
 
 nav {
@@ -80,7 +91,8 @@ nav a:hover {
 
 
 /* 
-   PAGE LAYOUT
+    PAGE LAYOUT
+    looking at the size preference
 */
 
 .page {
@@ -93,7 +105,8 @@ nav a:hover {
 
 
 /* 
-   BIG TITLES
+    BIG TITLES
+    large titles look nice
 */
 
 .big-title {
@@ -118,6 +131,7 @@ nav a:hover {
 
 /*
    HOME PAGE
+   home page design, landed on the middle align
 */
 
 .home-title {
@@ -166,6 +180,7 @@ nav a:hover {
 
 /*
    ABOUT PAGE
+   changing line size etc, help of claude
 */
 
 .about-text {
@@ -189,6 +204,7 @@ nav a:hover {
 
 /*
    BLOG POSTS
+   claude helped me space it out
 */
 
 .post-feed {
@@ -206,6 +222,7 @@ nav a:hover {
 
 /*
    POST BOX
+   post box same size as the one i designed on canva, pretty similar. similar shape though
 */
 
 .post-card {
@@ -237,8 +254,8 @@ nav a:hover {
 
 /*
    POST DATE
-
    ALWAYS 40PX
+   (changed this mulitple times)
 */
 
 .post-date {
@@ -256,8 +273,8 @@ nav a:hover {
 
 /*
    POST TITLE
-
    ALWAYS 40PX
+   (cahnged this multiple times
 */
 
 .post-title {
@@ -277,10 +294,8 @@ nav a:hover {
 
 /* 
    POST CONTENT
-
-ALWAYS 35PX
-
-the size used to be linked to index, but i fized it
+   ALWAYS 35PX
+   the size used to be linked to index, but i fized it
 */
 
 .post-content {
@@ -316,6 +331,7 @@ the size used to be linked to index, but i fized it
 
 /*
    CODE BLOCKS
+   asked claude for help
 */
 
 .post-content pre {
@@ -340,6 +356,7 @@ the size used to be linked to index, but i fized it
 
 /*
    DELETE POST BUTTON
+    did this later on, add the delete button after i realized i needed a delete button in case i messed up
 */
 
 .delete-post-button {
@@ -377,6 +394,7 @@ the size used to be linked to index, but i fized it
 
 /* 
    CREATE NEW POST
+    designed create a new post button (using canva)
 */
 
 .create-section {
@@ -416,6 +434,7 @@ the size used to be linked to index, but i fized it
 
 /* 
    POST TITLE INPUT
+(designing the post itself)
 */
 
 .create-box input {
@@ -460,6 +479,7 @@ the size used to be linked to index, but i fized it
 
 /* 
    POST CONTENT INPUT
+changed this multiple times, asked chat gpt what they thought
 */
 
 .create-box textarea {
@@ -539,6 +559,7 @@ the size used to be linked to index, but i fized it
 
 /* 
    VIDEO FEED
+realized i didnt need this at this moment, but i already did blog.html
 */
 
 .video-feed {
@@ -574,6 +595,7 @@ the size used to be linked to index, but i fized it
 
 /* 
    VIDEO BOX
+designed this on canva, just moved the idea from canva to here
 */
 
 .video-wrapper {
@@ -615,6 +637,7 @@ the size used to be linked to index, but i fized it
 
 /*
    VIDEO PLAY BUTTON
+also deisgned on canva. the button is in the extra elements section
 */
 
 .play-button {
@@ -673,6 +696,7 @@ the size used to be linked to index, but i fized it
 
 /* 
    VIDEO UPLOAD
+aligning the label span
 */
 
 .video-upload {
@@ -743,6 +767,8 @@ the size used to be linked to index, but i fized it
 
 /*
    MOBILE
+had to connect with files/phone (needed a design)
+not sure if the video lines up fully with the shape
 */
 
 @media (max-width: 900px) {
@@ -813,7 +839,6 @@ the size used to be linked to index, but i fized it
 
     /* 
        BLOG
-       
        SAME SIZES AS DESKTOP
    */
 
@@ -888,7 +913,7 @@ the size used to be linked to index, but i fized it
 
 
     /*
-       CREATE POST
+       CREATE POST!!!! (might have been redundant (claude did not remove thought)
     */
 
     .create-section {
@@ -950,6 +975,7 @@ the size used to be linked to index, but i fized it
 
     /*
        VIDEO
+    editing the actual video. made sure all elements are there
     */
 
     .video-post {
@@ -999,6 +1025,7 @@ the size used to be linked to index, but i fized it
 
     /* 
        VIDEO UPLOAD
+    connected with files on computer
     */
 
     .video-upload {
