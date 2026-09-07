@@ -1,8 +1,7 @@
-```javascript
 // BLOG POSTS!!!!!!!!!
 
 
-// LOAD SAVED BLOG POSTS WHEN PAGE OPENS
+/* LOAD POSTS WHEN THE PAGE OPENS */
 
 document.addEventListener(
     "DOMContentLoaded",
@@ -14,7 +13,61 @@ document.addEventListener(
 );
 
 
-// PUBLISH POST
+/* GET SAVED POSTS */
+
+function getSavedPosts() {
+
+    const savedPosts =
+        localStorage.getItem(
+            "blogPosts"
+        );
+
+
+    if (
+        !savedPosts
+    ) {
+
+        return [];
+
+    }
+
+
+    try {
+
+        return JSON.parse(
+            savedPosts
+        );
+
+    } catch (
+        error
+    ) {
+
+        console.log(
+            "Could not load saved posts."
+        );
+
+        return [];
+
+    }
+
+}
+
+
+/* SAVE POSTS */
+
+function savePosts(
+    posts
+) {
+
+    localStorage.setItem(
+        "blogPosts",
+        JSON.stringify(posts)
+    );
+
+}
+
+
+/* PUBLISH A NEW BLOG POST */
 
 function publishPost() {
 
@@ -95,49 +148,46 @@ function publishPost() {
         );
 
 
-    // CREATE POST INFORMATION
+    // CREATE A UNIQUE ID FOR THE POST
 
-    const newPost = {
+    const postData = {
 
         id:
             Date.now(),
+
+        date:
+            date,
 
         title:
             title,
 
         content:
-            content,
-
-        date:
-            date
+            content
 
     };
 
 
-    // GET SAVED POSTS
+    // SAVE THE NEW POST
 
-    let savedPosts =
+    const posts =
         getSavedPosts();
 
 
-    // ADD NEW POST TO THE TOP
-
-    savedPosts.unshift(
-        newPost
+    posts.unshift(
+        postData
     );
 
-
-    // SAVE THE POSTS
 
     savePosts(
-        savedPosts
+        posts
     );
 
 
-    // CREATE THE POST ON THE PAGE
+    // CREATE POST BUTTON!!!!!!!
 
     createPost(
-        newPost
+        postData,
+        true
     );
 
 
@@ -150,94 +200,15 @@ function publishPost() {
 }
 
 
-// GET SAVED POSTS
-// added this so if something goes wrong with saved posts,
-// it will not stop the publish button from working
+/* CREATE THE BLOG POST ON THE PAGE */
 
-function getSavedPosts() {
-
-
-    try {
-
-        const savedPosts =
-            localStorage.getItem(
-                "blogPosts"
-            );
-
-
-        if (
-            !savedPosts
-        ) {
-
-            return [];
-
-        }
-
-
-        const posts =
-            JSON.parse(
-                savedPosts
-            );
-
-
-        if (
-            Array.isArray(posts)
-        ) {
-
-            return posts;
-
-        }
-
-
-        return [];
-
-
-    } catch (
-        error
-    ) {
-
-
-        // if the saved information is broken,
-// start with an empty list instead
-
-        localStorage.removeItem(
-            "blogPosts"
-        );
-
-
-        return [];
-
-
-    }
-
-}
-
-
-// SAVE POSTS
-
-function savePosts(posts) {
-
-
-    localStorage.setItem(
-        "blogPosts",
-        JSON.stringify(
-            posts
-        )
-    );
-
-
-}
-
-
-// CREATE POST
-
-function createPost(postData) {
-
+function createPost(
+    postData,
+    addToPage
+) {
 
     const feed =
-        document.getElementById(
-            "postFeed"
-        );
+        document.getElementById("postFeed");
 
 
     if (
@@ -249,26 +220,9 @@ function createPost(postData) {
     }
 
 
-    const post =
-        document.createElement(
-            "article"
-        );
-
-
-    post.className =
-        "post-card";
-
-
-    // SAVE POST ID
-
-    post.dataset.id =
-        postData.id;
-
-
     // THE PARAGRAPH FORMAT
 
-    let contentHTML =
-        "";
+    let contentHTML = "";
 
 
     const paragraphs =
@@ -285,6 +239,7 @@ function createPost(postData) {
                 paragraph.trim() !== ""
             ) {
 
+
                 contentHTML += `
 
                     <p>
@@ -300,6 +255,7 @@ function createPost(postData) {
 
                 `;
 
+
             }
 
         }
@@ -307,6 +263,20 @@ function createPost(postData) {
 
 
     // PUT EVERYTHING INTO THE POST!!!!!!!!!!!
+
+    const post =
+        document.createElement(
+            "article"
+        );
+
+
+    post.className =
+        "post-card";
+
+
+    post.dataset.id =
+        postData.id;
+
 
     post.innerHTML = `
 
@@ -343,48 +313,31 @@ function createPost(postData) {
 
 
     // didnt know whether to put new post at the bottom or top. thought to many other wesbsites, new post on top was final decision
-    // NEW POST GOES ON TOP 
+    //NEW POST GOES ON TOP
 
-    feed.prepend(
-        post
-    );
+    if (
+        addToPage
+    ) {
 
+        feed.prepend(
+            post
+        );
+
+    }
 
 }
 
 
-// LOAD SAVED POSTS
+/* LOAD SAVED POSTS */
 
 function loadPosts() {
 
-
-    const feed =
-        document.getElementById(
-            "postFeed"
-        );
-
-
-    // MAKE SURE WE ARE ON THE BLOG PAGE
-
-    if (
-        !feed
-    ) {
-
-        return;
-
-    }
-
-
-    // GET SAVED POSTS
-
-    const savedPosts =
+    const posts =
         getSavedPosts();
 
 
-    // STOP IF THERE ARE NO SAVED POSTS
-
     if (
-        savedPosts.length === 0
+        posts.length === 0
     ) {
 
         return;
@@ -392,36 +345,37 @@ function loadPosts() {
     }
 
 
-    // DISPLAY SAVED POSTS
-    // going backwards keeps the newest post on top
+    // LOAD POSTS IN THE CORRECT ORDER
 
-    for (
-        let i =
-            savedPosts.length - 1;
+    posts
+        .slice()
+        .reverse()
+        .forEach(
+            function(postData) {
 
-        i >= 0;
+                createPost(
+                    postData,
+                    true
+                );
 
-        i--
-    ) {
-
-        createPost(
-            savedPosts[i]
+            }
         );
-
-    }
-
 
 }
 
 
-// following up on the blog.html, needed a spot the delete the post in case of mess up
-// DELETE BLOG POST
+/* following up on the blog.html, needed a spot the delete the post in case of mess up
+// DELETE BLOG POST */
 
-function deletePost(button) {
+function deletePost(
+    button
+) {
 
-   // confirm to delete, could have been accident!!!
-   
-   // ASK FOR DELETION CONFIRMATION
+
+    // confirm to delete, could have been accident!!!
+
+
+    // ASK FOR DELETION CONFIRMATION
 
     const confirmDelete =
         confirm(
@@ -448,62 +402,65 @@ function deletePost(button) {
         );
 
 
-    // this migth have been redundant but maybe not. put the delete post before
-    // DELETE THE POST
-
     if (
-        post
+        !post
     ) {
 
+        return;
 
-        const postID =
-            post.dataset.id;
-
-
-        // DELETE FROM PAGE
-
-        post.remove();
+    }
 
 
-        // GET SAVED POSTS
+    // GET THE POST ID
 
-        let savedPosts =
-            getSavedPosts();
-
-
-        // REMOVE DELETED POST
-
-        savedPosts =
-            savedPosts.filter(
-                function(savedPost) {
-
-                    return String(
-                        savedPost.id
-                    ) !== String(
-                        postID
-                    );
-
-                }
-            );
+    const postID =
+        post.dataset.id;
 
 
-        // SAVE UPDATED POSTS
+    // GET ALL SAVED POSTS
 
-        savePosts(
-            savedPosts
+    const posts =
+        getSavedPosts();
+
+
+    // REMOVE THE POST FROM SAVED POSTS
+
+    const updatedPosts =
+        posts.filter(
+            function(savedPost) {
+
+                return String(
+                    savedPost.id
+                ) !== String(
+                    postID
+                );
+
+            }
         );
 
 
-    }
+    // SAVE THE UPDATED POSTS
+
+    savePosts(
+        updatedPosts
+    );
+
+
+    // this migth have been redundant but maybe not. put the delete post before
+    // DELETE THE POST
+
+    post.remove();
 
 }
 
 
-// VIDEO POSTS
+/* VIDEO POSTS */
 // realized too late that this was not neccessary, however claude helped with most of this, most difficult was connectino to my own files
 
 
-function postVideo(event) {
+function postVideo(
+    event
+) {
 
 
     const file =
@@ -537,14 +494,19 @@ function postVideo(event) {
             }
         );
 
-   // this is the point where i thought to myself "why did i do this"
-   
+
+    // this is the point where i thought to myself "why did i do this"
+
     const videoURL =
-        URL.createObjectURL(file);
+        URL.createObjectURL(
+            file
+        );
 
 
     const post =
-        document.createElement("article");
+        document.createElement(
+            "article"
+        );
 
 
     post.className =
@@ -582,47 +544,61 @@ function postVideo(event) {
     `;
 
 
-    feed.prepend(post);
+    feed.prepend(
+        post
+    );
 
 
     const video =
-        post.querySelector("video");
+        post.querySelector(
+            "video"
+        );
 
 
     const playButton =
-        post.querySelector(".play-button");
+        post.querySelector(
+            ".play-button"
+        );
 
 
-   
-// PLAY BUTTON FOR VID
-// not sure if works yet, havent tested it yet, havent inserted a vidio yet
+
+    // PLAY BUTTON FOR VID
+    // not sure if works yet, havent tested it yet, havent inserted a vidio yet
+
 
     playButton.addEventListener(
         "click",
         function() {
 
+
             video.play();
+
 
             playButton.style.display =
                 "none";
+
 
         }
     );
 
 
-   // SHOW PLAY BUTTON WHEN VIDEO IS PAUSED
-   // needed a way to turn vid back on (claude suggested)
+    // SHOW PLAY BUTTON WHEN VIDEO IS PAUSED
+    // needed a way to turn vid back on (claude suggested)
+
 
     video.addEventListener(
         "pause",
         function() {
 
+
             if (
                 !video.ended
             ) {
 
+
                 playButton.style.display =
                     "flex";
+
 
             }
 
@@ -630,21 +606,24 @@ function postVideo(event) {
     );
 
 
-   // VID ENDS, SHOW BUTTON AGAIN
-   // needed a way to restart video (claude suggested)
+    // VID ENDS, SHOW BUTTON AGAIN
+    // needed a way to restart video (claude suggested)
+
 
     video.addEventListener(
         "ended",
         function() {
 
+
             playButton.style.display =
                 "flex";
+
 
         }
     );
 
 
-    // CLEAR THE FILE INPUT
+// CLEAR THE FILE INPUT
 
     event.target.value = "";
 
@@ -652,4 +631,3 @@ function postVideo(event) {
 
 
 // NOT SURE WHETHER OR NOT TO HAVE DELETE VIDEO, MIGHT NOT POST VIDEO EITHER WAY (MAYBE)
-```
