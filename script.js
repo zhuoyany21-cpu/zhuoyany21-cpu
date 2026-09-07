@@ -1,5 +1,22 @@
 // BLOG POSTS!!!!!!!!!
 
+
+// LOAD SAVED BLOG POSTS WHEN PAGE OPENS
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+
+        loadPosts();
+
+
+    }
+);
+
+
+// PUBLISH NEW BLOG POST
+
 function publishPost() {
 
 
@@ -15,7 +32,7 @@ function publishPost() {
         document.getElementById("postFeed");
 
 
-    // GET WHAT USER TYPED (me)
+    // GET WHAT USER TYPED
 
     const title =
         titleInput.value.trim();
@@ -24,7 +41,7 @@ function publishPost() {
         contentInput.value.trim();
 
 
-    // MAKE SURE THERE IS A TLTE FOR THE BLOG POST!
+    // MAKE SURE THERE IS A TITLE FOR THE BLOG POST!
 
     if (
         title === ""
@@ -57,11 +74,8 @@ function publishPost() {
 
     }
 
-   // needed a way to insert date without having to manually do it like the title! (not sure if it works, hopefully it does)
-   // tested it and it does in fact work!! (asked claude how to do it)
 
-   
-   // AUTO INSERT DATE
+    // AUTO INSERT DATE
 
     const today =
         new Date();
@@ -78,7 +92,76 @@ function publishPost() {
         );
 
 
-    // CREATE POST BUTTON!!!!!!!
+    // CREATE POST INFORMATION
+
+    const newPost = {
+
+        id:
+            Date.now(),
+
+        title:
+            title,
+
+        content:
+            content,
+
+        date:
+            date
+
+    };
+
+
+    // GET SAVED POSTS
+
+    const savedPosts =
+        JSON.parse(
+            localStorage.getItem(
+                "blogPosts"
+            )
+        ) || [];
+
+
+    // ADD NEW POST TO BEGINNING
+
+    savedPosts.unshift(
+        newPost
+    );
+
+
+    // SAVE POSTS
+
+    localStorage.setItem(
+        "blogPosts",
+        JSON.stringify(
+            savedPosts
+        )
+    );
+
+
+    // CREATE POST ON PAGE
+
+    createPost(
+        newPost,
+        feed
+    );
+
+
+    // CLEAR INPUT!
+
+    titleInput.value = "";
+
+    contentInput.value = "";
+
+}
+
+
+// CREATE POST FUNCTION
+
+function createPost(
+    postData,
+    feed
+) {
+
 
     const post =
         document.createElement("article");
@@ -88,13 +171,21 @@ function publishPost() {
         "post-card";
 
 
+    // SAVE POST ID
+
+    post.dataset.id =
+        postData.id;
+
+
     // THE PARAGRAPH FORMAT
 
     let contentHTML = "";
 
 
     const paragraphs =
-        content.split(/\n\s*\n/);
+        postData.content.split(
+            /\n\s*\n/
+        );
 
 
     paragraphs.forEach(
@@ -134,14 +225,14 @@ function publishPost() {
 
         <div class="post-date">
 
-            ${date}
+            ${postData.date}
 
         </div>
 
 
         <h2 class="post-title">
 
-            ${title}
+            ${postData.title}
 
         </h2>
 
@@ -163,28 +254,75 @@ function publishPost() {
 
     `;
 
-   // didnt know whether to put new post at the bottom or top. thought to many other wesbsites, new post on top was final decision
-   //NEW POST GOES ON TOP 
 
-    feed.prepend(post);
+    // NEW POST GOES ON TOP
 
+    feed.prepend(
+        post
+    );
 
-          // CLEAR INPUT!
-
-    titleInput.value = "";
-
-    contentInput.value = "";
 
 }
 
-// following up on the blog.html, needed a spot the delete the post in case of mess up
+
+// LOAD SAVED POSTS
+
+function loadPosts() {
+
+
+    const feed =
+        document.getElementById(
+            "postFeed"
+        );
+
+
+    // ONLY RUN ON BLOG PAGE
+
+    if (
+        !feed
+    ) {
+
+        return;
+
+    }
+
+
+    const savedPosts =
+        JSON.parse(
+            localStorage.getItem(
+                "blogPosts"
+            )
+        ) || [];
+
+
+    // CREATE EVERY SAVED POST
+
+    savedPosts
+        .slice()
+        .reverse()
+        .forEach(
+            function(postData) {
+
+
+                createPost(
+                    postData,
+                    feed
+                );
+
+
+            }
+        );
+
+
+}
+
+
 // DELETE BLOG POST
 
 function deletePost(button) {
 
-   // confirm to delete, could have been accident!!!
-   
-   // ASK FOR DELETION CONFIRMATION
+
+    // ASK FOR DELETION CONFIRMATION
 
     const confirmDelete =
         confirm(
@@ -206,25 +344,72 @@ function deletePost(button) {
     // FIND THE POST
 
     const post =
-        button.closest(".post-card");
+        button.closest(
+            ".post-card"
+        );
 
-    // this migth have been redundant but maybe not. put the delete post before
-    // DELETE THE POST
 
     if (
         post
     ) {
 
+
+        // GET POST ID
+
+        const postID =
+            post.dataset.id;
+
+
+        // DELETE FROM PAGE
+
         post.remove();
 
+
+        // GET SAVED POSTS
+
+        let savedPosts =
+            JSON.parse(
+                localStorage.getItem(
+                    "blogPosts"
+                )
+            ) || [];
+
+
+        // REMOVE DELETED POST FROM STORAGE
+
+        savedPosts =
+            savedPosts.filter(
+                function(savedPost) {
+
+
+                    return String(
+                        savedPost.id
+                    ) !== String(
+                        postID
+                    );
+
+
+                }
+            );
+
+
+        // SAVE UPDATED POSTS
+
+        localStorage.setItem(
+            "blogPosts",
+            JSON.stringify(
+                savedPosts
+            )
+        );
+
+
     }
+
 
 }
 
 
 // VIDEO POSTS
-// realized too late that this was not neccessary, however claude helped with most of this, most difficult was connectino to my own files
-
 
 function postVideo(event) {
 
@@ -243,7 +428,9 @@ function postVideo(event) {
 
 
     const feed =
-        document.getElementById("videoFeed");
+        document.getElementById(
+            "videoFeed"
+        );
 
 
     const today =
@@ -260,14 +447,17 @@ function postVideo(event) {
             }
         );
 
-   // this is the point where i thought to myself "why did i do this"
-   
+
     const videoURL =
-        URL.createObjectURL(file);
+        URL.createObjectURL(
+            file
+        );
 
 
     const post =
-        document.createElement("article");
+        document.createElement(
+            "article"
+        );
 
 
     post.className =
@@ -305,20 +495,24 @@ function postVideo(event) {
     `;
 
 
-    feed.prepend(post);
+    feed.prepend(
+        post
+    );
 
 
     const video =
-        post.querySelector("video");
+        post.querySelector(
+            "video"
+        );
 
 
     const playButton =
-        post.querySelector(".play-button");
+        post.querySelector(
+            ".play-button"
+        );
 
 
-   
-// PLAY BUTTON FOR VID
-// not sure if works yet, havent tested it yet, havent inserted a vidio yet
+    // PLAY BUTTON FOR VIDEO
 
     playButton.addEventListener(
         "click",
@@ -336,8 +530,7 @@ function postVideo(event) {
     );
 
 
-   // SHOW PLAY BUTTON WHEN VIDEO IS PAUSED
-   // needed a way to turn vid back on (claude suggested)
+    // SHOW PLAY BUTTON WHEN VIDEO IS PAUSED
 
     video.addEventListener(
         "pause",
@@ -359,8 +552,7 @@ function postVideo(event) {
     );
 
 
-   // VID ENDS, SHOW BUTTON AGAIN
-   // needed a way to restart video (claude suggested)
+    // VIDEO ENDS, SHOW BUTTON AGAIN
 
     video.addEventListener(
         "ended",
@@ -375,9 +567,9 @@ function postVideo(event) {
     );
 
 
-// CLEAR THE FILE INPUT
+    // CLEAR THE FILE INPUT
 
     event.target.value = "";
 
+
 }
-// NOT SURE WHETHER OR NOT TO HAVE DELETE VIDEO, MIGHT NOT POST VIDEO EITHER WAY (MAYBE)
