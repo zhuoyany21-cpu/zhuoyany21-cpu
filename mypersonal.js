@@ -52,4 +52,9 @@ connect it to your files
 // oh my gosh script and style were so long! (took even longer because had to learn css!!!!
 //script was in java, knew some stuff from school! (finally started to learn)
 
-
+// final issue: my new posts wouldnt save
+// solution: add that line of code into script
+// still would work? 
+// checed the console on the website
+// found the issus in line 242, changed it (class was not defined.
+// now saves what you publish!
