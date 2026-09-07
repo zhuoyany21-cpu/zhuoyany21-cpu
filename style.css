@@ -139,17 +139,18 @@ nav a:hover {
 }
 
 .post-card {
-    width: 780px;
-
+    width: 90%;
+    max-width: 1400px;
     min-height: 380px;
 
     border: 8px solid #050505;
-
     border-radius: 90px;
 
     padding: 40px 28px;
-
     background: transparent;
+
+    box-sizing: border-box;
+    margin: 0 auto;
 }
 
 .post-date {
