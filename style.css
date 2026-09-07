@@ -170,10 +170,8 @@ nav a:hover {
 }
 
 .post-content {
-    font-size: 32px;
-
+    font-size: 32px !important;
     line-height: 1.1;
-
     word-break: break-word;
 }
 
