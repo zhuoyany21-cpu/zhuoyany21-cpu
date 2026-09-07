@@ -49,4 +49,7 @@ connect it to your files
 // problem: hwo to link to the different parta
 // used html
 
+// oh my gosh script and style were so long! (took even longer because had to learn css!!!!
+//script was in java, knew some stuff from school! (finally started to learn)
+
 
