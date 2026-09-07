@@ -1,3 +1,4 @@
+
 // BLOG POSTS!!!!!!!!!
 
 
@@ -26,7 +27,7 @@ function getSavedPosts() {
 
 
     if (
-        !savedPosts
+        savedPosts === null
     ) {
 
         return [];
@@ -44,8 +45,8 @@ function getSavedPosts() {
         error
     ) {
 
-        console.log(
-            "Could not load saved posts."
+        localStorage.removeItem(
+            "blogPosts"
         );
 
         return [];
@@ -62,26 +63,10 @@ function savePosts(
     posts
 ) {
 
-    try {
-
-        localStorage.setItem(
-            "blogPosts",
-            JSON.stringify(posts)
-        );
-
-        return true;
-
-    } catch (
-        error
-    ) {
-
-        console.log(
-            "Could not save posts."
-        );
-
-        return false;
-
-    }
+    localStorage.setItem(
+        "blogPosts",
+        JSON.stringify(posts)
+    );
 
 }
 
@@ -95,13 +80,14 @@ function publishPost() {
     // GET INPUT!!
 
     const titleInput =
-        document.getElementById("postTitle");
+        document.getElementById(
+            "postTitle"
+        );
 
     const contentInput =
-        document.getElementById("postContent");
-
-    const feed =
-        document.getElementById("postFeed");
+        document.getElementById(
+            "postContent"
+        );
 
 
     // GET WHAT USER TYPED (me)
@@ -187,11 +173,10 @@ function publishPost() {
     };
 
 
-    // CREATE THE POST FIRST!!!!
+    // CREATE THE POST
 
     createPost(
-        postData,
-        true
+        postData
     );
 
 
@@ -206,23 +191,9 @@ function publishPost() {
     );
 
 
-    const saved =
-        savePosts(
-            posts
-        );
-
-
-    // TELL ME IF THE POST COULD NOT BE SAVED
-
-    if (
-        !saved
-    ) {
-
-        console.log(
-            "The post appeared, but could not be saved."
-        );
-
-    }
+    savePosts(
+        posts
+    );
 
 
     // CLEAR INPUT!
@@ -238,12 +209,13 @@ function publishPost() {
 /* CREATE THE BLOG POST ON THE PAGE */
 
 function createPost(
-    postData,
-    addToPage
+    postData
 ) {
 
     const feed =
-        document.getElementById("postFeed");
+        document.getElementById(
+            "postFeed"
+        );
 
 
     if (
@@ -257,7 +229,56 @@ function createPost(
 
     // THE PARAGRAPH FORMAT
 
-    let contentHTML = "";
+    const post =
+        document.createElement(
+            "article"
+        );
+
+
+    post.className =
+        "post-card";
+
+
+    post.dataset.id =
+        postData.id;
+
+
+    const date =
+        document.createElement(
+            "div"
+        );
+
+
+    date.className =
+        "post-date";
+
+
+    date.textContent =
+        postData.date;
+
+
+    const title =
+        document.createElement(
+            "h2"
+        );
+
+
+    title.className =
+        "post-title";
+
+
+    title.textContent =
+        postData.title;
+
+
+    const content =
+        document.createElement(
+            "div"
+        );
+
+
+    content.className =
+        "post-content";
 
 
     const paragraphs =
@@ -274,22 +295,24 @@ function createPost(
                 paragraph.trim() !== ""
             ) {
 
+                const p =
+                    document.createElement(
+                        "p"
+                    );
 
-                contentHTML += `
 
-                    <p>
+                p.innerHTML =
+                    paragraph
+                        .trim()
+                        .replace(
+                            /\n/g,
+                            "<br>"
+                        );
 
-                        ${paragraph
-                            .trim()
-                            .replace(
-                                /\n/g,
-                                "<br>"
-                            )}
 
-                    </p>
-
-                `;
-
+                content.appendChild(
+                    p
+                );
 
             }
 
@@ -297,68 +320,57 @@ function createPost(
     );
 
 
-    // PUT EVERYTHING INTO THE POST!!!!!!!!!!!
+    // DELETE BUTTON
 
-    const post =
+    const deleteButton =
         document.createElement(
-            "article"
+            "button"
         );
 
 
-    post.className =
-        "post-card";
+    deleteButton.className =
+        "delete-post-button";
 
 
-    post.dataset.id =
-        postData.id;
+    deleteButton.textContent =
+        "Delete Post";
 
 
-    post.innerHTML = `
+    deleteButton.onclick =
+        function() {
 
-        <div class="post-date">
+            deletePost(
+                deleteButton
+            );
 
-            ${postData.date}
-
-        </div>
-
-
-        <h2 class="post-title">
-
-            ${postData.title}
-
-        </h2>
+        };
 
 
-        <div class="post-content">
+    // PUT EVERYTHING INTO THE POST!!!!!!!!!!!
 
-            ${contentHTML}
+    post.appendChild(
+        date
+    );
 
-        </div>
+    post.appendChild(
+        title
+    );
 
+    post.appendChild(
+        content
+    );
 
-        <button
-            class="delete-post-button"
-            onclick="deletePost(this)">
-
-            Delete Post
-
-        </button>
-
-    `;
+    post.appendChild(
+        deleteButton
+    );
 
 
     // didnt know whether to put new post at the bottom or top. thought to many other wesbsites, new post on top was final decision
     //NEW POST GOES ON TOP
 
-    if (
-        addToPage
-    ) {
-
-        feed.prepend(
-            post
-        );
-
-    }
+    feed.prepend(
+        post
+    );
 
 }
 
@@ -390,8 +402,7 @@ function loadPosts() {
             function(postData) {
 
                 createPost(
-                    postData,
-                    true
+                    postData
                 );
 
             }
@@ -515,7 +526,9 @@ function postVideo(
 
 
     const feed =
-        document.getElementById("videoFeed");
+        document.getElementById(
+            "videoFeed"
+        );
 
 
     const today =
@@ -551,52 +564,94 @@ function postVideo(
         "video-post";
 
 
-    post.innerHTML = `
-
-        <div class="video-post-date">
-
-            ${date}
-
-        </div>
+    const videoDate =
+        document.createElement(
+            "div"
+        );
 
 
-        <div class="video-wrapper">
-
-            <video>
-
-                <source
-                    src="${videoURL}"
-                    type="${file.type}">
-
-            </video>
+    videoDate.className =
+        "video-post-date";
 
 
-            <button
-                class="play-button"
-                aria-label="Play video">
+    videoDate.textContent =
+        date;
 
-            </button>
 
-        </div>
+    const wrapper =
+        document.createElement(
+            "div"
+        );
 
-    `;
+
+    wrapper.className =
+        "video-wrapper";
+
+
+    const video =
+        document.createElement(
+            "video"
+        );
+
+
+    const source =
+        document.createElement(
+            "source"
+        );
+
+
+    source.src =
+        videoURL;
+
+
+    source.type =
+        file.type;
+
+
+    video.appendChild(
+        source
+    );
+
+
+    const playButton =
+        document.createElement(
+            "button"
+        );
+
+
+    playButton.className =
+        "play-button";
+
+
+    playButton.setAttribute(
+        "aria-label",
+        "Play video"
+    );
+
+
+    wrapper.appendChild(
+        video
+    );
+
+
+    wrapper.appendChild(
+        playButton
+    );
+
+
+    post.appendChild(
+        videoDate
+    );
+
+
+    post.appendChild(
+        wrapper
+    );
 
 
     feed.prepend(
         post
     );
-
-
-    const video =
-        post.querySelector(
-            "video"
-        );
-
-
-    const playButton =
-        post.querySelector(
-            ".play-button"
-        );
 
 
 
@@ -669,3 +724,4 @@ function postVideo(
 
 
 // NOT SURE WHETHER OR NOT TO HAVE DELETE VIDEO, MIGHT NOT POST VIDEO EITHER WAY (MAYBE)
+
