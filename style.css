@@ -154,13 +154,13 @@ nav a:hover {
 }
 
 .post-date {
-    font-size: 40px;
+    font-size: 50px;
 
     margin-bottom: 4px;
 }
 
 .post-title {
-    font-size: 39px;
+    font-size: 50px;
 
     font-weight: 400;
 
@@ -170,7 +170,7 @@ nav a:hover {
 }
 
 .post-content {
-    font-size: 37px !important;
+    font-size: 45px !important;
     line-height: 1.1;
     word-break: break-word;
 }
