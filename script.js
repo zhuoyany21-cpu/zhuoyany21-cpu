@@ -77,7 +77,7 @@ function publishPost() {
     // needed a way to insert date without having to manually do it like the title! (not sure if it works, hopefully it does)
     // tested it and it does in fact work!! (asked claude how to do it)
 
-   
+
     // AUTO INSERT DATE
 
     const today =
@@ -117,23 +117,7 @@ function publishPost() {
     // GET SAVED POSTS
 
     let savedPosts =
-        JSON.parse(
-            localStorage.getItem(
-                "blogPosts"
-            )
-        );
-
-
-    // IF THERE ARE NO SAVED POSTS YET
-
-    if (
-        !savedPosts
-    ) {
-
-        savedPosts =
-            [];
-
-    }
+        getSavedPosts();
 
 
     // ADD NEW POST TO THE TOP
@@ -145,11 +129,8 @@ function publishPost() {
 
     // SAVE THE POSTS
 
-    localStorage.setItem(
-        "blogPosts",
-        JSON.stringify(
-            savedPosts
-        )
+    savePosts(
+        savedPosts
     );
 
 
@@ -169,6 +150,85 @@ function publishPost() {
 }
 
 
+// GET SAVED POSTS
+// added this so if something goes wrong with saved posts,
+// it will not stop the publish button from working
+
+function getSavedPosts() {
+
+
+    try {
+
+        const savedPosts =
+            localStorage.getItem(
+                "blogPosts"
+            );
+
+
+        if (
+            !savedPosts
+        ) {
+
+            return [];
+
+        }
+
+
+        const posts =
+            JSON.parse(
+                savedPosts
+            );
+
+
+        if (
+            Array.isArray(posts)
+        ) {
+
+            return posts;
+
+        }
+
+
+        return [];
+
+
+    } catch (
+        error
+    ) {
+
+
+        // if the saved information is broken,
+// start with an empty list instead
+
+        localStorage.removeItem(
+            "blogPosts"
+        );
+
+
+        return [];
+
+
+    }
+
+}
+
+
+// SAVE POSTS
+
+function savePosts(posts) {
+
+
+    localStorage.setItem(
+        "blogPosts",
+        JSON.stringify(
+            posts
+        )
+    );
+
+
+}
+
+
 // CREATE POST
 
 function createPost(postData) {
@@ -178,6 +238,15 @@ function createPost(postData) {
         document.getElementById(
             "postFeed"
         );
+
+
+    if (
+        !feed
+    ) {
+
+        return;
+
+    }
 
 
     const post =
@@ -216,18 +285,20 @@ function createPost(postData) {
                 paragraph.trim() !== ""
             ) {
 
-                contentHTML +=
+                contentHTML += `
 
-                    "<p>" +
+                    <p>
 
-                    paragraph
-                        .trim()
-                        .replace(
-                            /\n/g,
-                            "<br>"
-                        ) +
+                        ${paragraph
+                            .trim()
+                            .replace(
+                                /\n/g,
+                                "<br>"
+                            )}
 
-                    "</p>";
+                    </p>
+
+                `;
 
             }
 
@@ -307,17 +378,13 @@ function loadPosts() {
     // GET SAVED POSTS
 
     const savedPosts =
-        JSON.parse(
-            localStorage.getItem(
-                "blogPosts"
-            )
-        );
+        getSavedPosts();
 
 
     // STOP IF THERE ARE NO SAVED POSTS
 
     if (
-        !savedPosts
+        savedPosts.length === 0
     ) {
 
         return;
@@ -401,21 +468,7 @@ function deletePost(button) {
         // GET SAVED POSTS
 
         let savedPosts =
-            JSON.parse(
-                localStorage.getItem(
-                    "blogPosts"
-                )
-            );
-
-
-        if (
-            !savedPosts
-        ) {
-
-            savedPosts =
-                [];
-
-        }
+            getSavedPosts();
 
 
         // REMOVE DELETED POST
@@ -436,11 +489,8 @@ function deletePost(button) {
 
         // SAVE UPDATED POSTS
 
-        localStorage.setItem(
-            "blogPosts",
-            JSON.stringify(
-                savedPosts
-            )
+        savePosts(
+            savedPosts
         );
 
 
