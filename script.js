@@ -1,7 +1,10 @@
+```javascript
 // BLOG POSTS!!!!!!!!!
 
 
 // LOAD SAVED BLOG POSTS WHEN PAGE OPENS
+// needed a way to make sure that the posts actually stay after refreshing!!!
+// hopefully this works!!!
 
 document.addEventListener(
     "DOMContentLoaded",
@@ -28,11 +31,8 @@ function publishPost() {
     const contentInput =
         document.getElementById("postContent");
 
-    const feed =
-        document.getElementById("postFeed");
 
-
-    // GET WHAT USER TYPED
+    // GET WHAT USER TYPED (me)
 
     const title =
         titleInput.value.trim();
@@ -41,7 +41,7 @@ function publishPost() {
         contentInput.value.trim();
 
 
-    // MAKE SURE THERE IS A TITLE FOR THE BLOG POST!
+    // MAKE SURE THERE IS A TLTE FOR THE BLOG POST!
 
     if (
         title === ""
@@ -75,6 +75,10 @@ function publishPost() {
     }
 
 
+    // needed a way to insert date without having to manually do it like the title! (not sure if it works, hopefully it does)
+    // tested it and it does in fact work!! (asked claude how to do it)
+
+
     // AUTO INSERT DATE
 
     const today =
@@ -92,7 +96,8 @@ function publishPost() {
         );
 
 
-    // CREATE POST INFORMATION
+    // CREATE NEW POST INFORMATION!!!!
+    // needed a way to save everything about the post
 
     const newPost = {
 
@@ -111,9 +116,10 @@ function publishPost() {
     };
 
 
-    // GET SAVED POSTS
+    // GET OLD SAVED POSTS
+    // this gets all the posts that were already saved
 
-    const savedPosts =
+    let posts =
         JSON.parse(
             localStorage.getItem(
                 "blogPosts"
@@ -121,28 +127,28 @@ function publishPost() {
         ) || [];
 
 
-    // ADD NEW POST TO BEGINNING
+    // ADD NEW POST TO THE TOP
 
-    savedPosts.unshift(
+    posts.unshift(
         newPost
     );
 
 
-    // SAVE POSTS
+    // SAVE POSTS!!!!
+    // this is what should make the posts stay after refreshing
 
     localStorage.setItem(
         "blogPosts",
         JSON.stringify(
-            savedPosts
+            posts
         )
     );
 
 
-    // CREATE POST ON PAGE
+    // SHOW THE NEW POST
 
-    createPost(
-        newPost,
-        feed
+    displayPost(
+        newPost
     );
 
 
@@ -155,16 +161,23 @@ function publishPost() {
 }
 
 
-// CREATE POST FUNCTION
+// DISPLAY ONE POST
 
-function createPost(
-    postData,
-    feed
-) {
+function displayPost(postData) {
 
+
+    const feed =
+        document.getElementById(
+            "postFeed"
+        );
+
+
+    // CREATE POST
 
     const post =
-        document.createElement("article");
+        document.createElement(
+            "article"
+        );
 
 
     post.className =
@@ -172,6 +185,7 @@ function createPost(
 
 
     // SAVE POST ID
+    // needed this so the delete button knows which post to delete
 
     post.dataset.id =
         postData.id;
@@ -179,13 +193,14 @@ function createPost(
 
     // THE PARAGRAPH FORMAT
 
-    let contentHTML = "";
-
-
     const paragraphs =
         postData.content.split(
             /\n\s*\n/
         );
+
+
+    let contentHTML =
+        "";
 
 
     paragraphs.forEach(
@@ -197,20 +212,15 @@ function createPost(
             ) {
 
 
-                contentHTML += `
-
-                    <p>
-
-                        ${paragraph
-                            .trim()
-                            .replace(
-                                /\n/g,
-                                "<br>"
-                            )}
-
-                    </p>
-
-                `;
+                contentHTML +=
+                    "<p>" +
+                    paragraph
+                        .trim()
+                        .replace(
+                            /\n/g,
+                            "<br>"
+                        ) +
+                    "</p>";
 
 
             }
@@ -255,6 +265,7 @@ function createPost(
     `;
 
 
+    // didnt know whether to put new post at the bottom or top. thought to many other wesbsites, new post on top was final decision
     // NEW POST GOES ON TOP
 
     feed.prepend(
@@ -266,6 +277,7 @@ function createPost(
 
 
 // LOAD SAVED POSTS
+// needed a way for all my posts to come back after refreshing!!!
 
 function loadPosts() {
 
@@ -287,7 +299,9 @@ function loadPosts() {
     }
 
 
-    const savedPosts =
+    // GET SAVED POSTS
+
+    const posts =
         JSON.parse(
             localStorage.getItem(
                 "blogPosts"
@@ -295,31 +309,37 @@ function loadPosts() {
         ) || [];
 
 
-    // CREATE EVERY SAVED POST
+    // DISPLAY ALL SAVED POSTS
+    // going backwards makes sure the newest post stays on top
 
-    savedPosts
-        .slice()
-        .reverse()
-        .forEach(
-            function(postData) {
+    for (
+        let i =
+            posts.length - 1;
 
+        i >= 0;
 
-                createPost(
-                    postData,
-                    feed
-                );
+        i--
+    ) {
 
 
-            }
+        displayPost(
+            posts[i]
         );
+
+
+    }
 
 
 }
 
 
+// following up on the blog.html, needed a spot the delete the post in case of mess up
 // DELETE BLOG POST
 
 function deletePost(button) {
+
+
+    // confirm to delete, could have been accident!!!
 
 
     // ASK FOR DELETION CONFIRMATION
@@ -349,6 +369,9 @@ function deletePost(button) {
         );
 
 
+    // this migth have been redundant but maybe not. put the delete post before
+    // DELETE THE POST
+
     if (
         post
     ) {
@@ -367,7 +390,7 @@ function deletePost(button) {
 
         // GET SAVED POSTS
 
-        let savedPosts =
+        let posts =
             JSON.parse(
                 localStorage.getItem(
                     "blogPosts"
@@ -375,10 +398,10 @@ function deletePost(button) {
             ) || [];
 
 
-        // REMOVE DELETED POST FROM STORAGE
+        // REMOVE THE DELETED POST FROM SAVED POSTS
 
-        savedPosts =
-            savedPosts.filter(
+        posts =
+            posts.filter(
                 function(savedPost) {
 
 
@@ -398,7 +421,7 @@ function deletePost(button) {
         localStorage.setItem(
             "blogPosts",
             JSON.stringify(
-                savedPosts
+                posts
             )
         );
 
@@ -410,6 +433,8 @@ function deletePost(button) {
 
 
 // VIDEO POSTS
+// realized too late that this was not neccessary, however claude helped with most of this, most difficult was connectino to my own files
+
 
 function postVideo(event) {
 
@@ -447,6 +472,8 @@ function postVideo(event) {
             }
         );
 
+
+    // this is the point where i thought to myself "why did i do this"
 
     const videoURL =
         URL.createObjectURL(
@@ -512,7 +539,8 @@ function postVideo(event) {
         );
 
 
-    // PLAY BUTTON FOR VIDEO
+    // PLAY BUTTON FOR VID
+    // not sure if works yet, havent tested it yet, havent inserted a vidio yet
 
     playButton.addEventListener(
         "click",
@@ -531,6 +559,7 @@ function postVideo(event) {
 
 
     // SHOW PLAY BUTTON WHEN VIDEO IS PAUSED
+    // needed a way to turn vid back on (claude suggested)
 
     video.addEventListener(
         "pause",
@@ -552,7 +581,8 @@ function postVideo(event) {
     );
 
 
-    // VIDEO ENDS, SHOW BUTTON AGAIN
+    // VID ENDS, SHOW BUTTON AGAIN
+    // needed a way to restart video (claude suggested)
 
     video.addEventListener(
         "ended",
@@ -573,3 +603,7 @@ function postVideo(event) {
 
 
 }
+
+
+// NOT SURE WHETHER OR NOT TO HAVE DELETE VIDEO, MIGHT NOT POST VIDEO EITHER WAY (MAYBE)
+```
