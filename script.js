@@ -1,3 +1,4 @@
+```javascript
 /* =========================
    BLOG POSTS
 ========================= */
@@ -15,12 +16,16 @@ function publishPost() {
         input.value.trim();
 
 
+    /* DON'T PUBLISH EMPTY POSTS */
+
     if (text === "") {
 
         return;
 
     }
 
+
+    /* GET TODAY'S DATE */
 
     const today =
         new Date();
@@ -37,6 +42,30 @@ function publishPost() {
         );
 
 
+    /* SPLIT THE POST */
+
+    const lines =
+        text.split("\n");
+
+
+    /*
+        FIRST LINE = TITLE
+        EVERYTHING ELSE = CONTENT
+    */
+
+    const title =
+        lines[0].trim();
+
+
+    const content =
+        lines
+            .slice(1)
+            .join("\n")
+            .trim();
+
+
+    /* CREATE THE POST */
+
     const post =
         document.createElement("article");
 
@@ -44,6 +73,44 @@ function publishPost() {
     post.className =
         "post-card";
 
+
+    /* CREATE CONTENT */
+
+    let contentHTML = "";
+
+
+    /*
+        EMPTY LINE = NEW PARAGRAPH
+    */
+
+    const paragraphs =
+        content.split(/\n\s*\n/);
+
+
+    paragraphs.forEach(
+        function(paragraph) {
+
+            if (
+                paragraph.trim() !== ""
+            ) {
+
+                contentHTML += `
+
+                    <p>
+                        ${paragraph
+                            .trim()
+                            .replace(/\n/g, "<br>")}
+                    </p>
+
+                `;
+
+            }
+
+        }
+    );
+
+
+    /* PUT EVERYTHING INSIDE THE POST */
 
     post.innerHTML = `
 
@@ -56,26 +123,26 @@ function publishPost() {
 
         <h2 class="post-title">
 
-            New Blog Post
+            ${title}
 
         </h2>
 
 
-        <p class="post-content">
+        <div class="post-content">
 
-            ${text}
+            ${contentHTML}
 
-        </p>
+        </div>
 
     `;
 
 
-    /* NEW POST APPEARS FIRST */
+    /* PUT NEW POST AT THE TOP */
 
     feed.prepend(post);
 
 
-    /* CLEAR TEXT BOX */
+    /* CLEAR THE TEXT BOX */
 
     input.value = "";
 
@@ -94,6 +161,9 @@ function postVideo(event) {
         event.target.files[0];
 
 
+    /* DON'T DO ANYTHING IF
+       NO FILE WAS SELECTED */
+
     if (!file) {
 
         return;
@@ -104,6 +174,8 @@ function postVideo(event) {
     const feed =
         document.getElementById("videoFeed");
 
+
+    /* GET TODAY'S DATE */
 
     const today =
         new Date();
@@ -120,13 +192,14 @@ function postVideo(event) {
         );
 
 
-    /* CREATE VIDEO URL */
+    /* CREATE A TEMPORARY URL
+       FOR THE VIDEO */
 
     const videoURL =
         URL.createObjectURL(file);
 
 
-    /* CREATE POST */
+    /* CREATE VIDEO POST */
 
     const post =
         document.createElement("article");
@@ -147,7 +220,6 @@ function postVideo(event) {
 
         <div class="video-wrapper">
 
-
             <video>
 
                 <source
@@ -163,53 +235,52 @@ function postVideo(event) {
 
             </button>
 
-
         </div>
 
     `;
 
 
-    /* ADD VIDEO TO TOP */
+    /* ADD VIDEO TO THE TOP */
 
     feed.prepend(post);
 
 
-    /* GET VIDEO + PLAY BUTTON */
+    /* FIND VIDEO */
 
     const video =
         post.querySelector("video");
 
 
+    /* FIND PLAY BUTTON */
+
     const playButton =
         post.querySelector(".play-button");
 
 
-    /* CLICK TRIANGLE = PLAY VIDEO */
+    /* =========================
+       PLAY VIDEO
+    ========================= */
 
     playButton.addEventListener(
         "click",
         function() {
 
-
             video.play();
-
-
-            /* HIDE TRIANGLE */
 
             playButton.style.display =
                 "none";
-
 
         }
     );
 
 
-    /* IF VIDEO IS PAUSED, SHOW BUTTON */
+    /* =========================
+       VIDEO PAUSED
+    ========================= */
 
     video.addEventListener(
         "pause",
         function() {
-
 
             if (
                 !video.ended
@@ -224,12 +295,13 @@ function postVideo(event) {
     );
 
 
-    /* IF VIDEO ENDS, SHOW BUTTON AGAIN */
+    /* =========================
+       VIDEO ENDED
+    ========================= */
 
     video.addEventListener(
         "ended",
         function() {
-
 
             playButton.style.display =
                 "flex";
@@ -238,8 +310,11 @@ function postVideo(event) {
     );
 
 
-    /* CLEAR INPUT */
+    /* =========================
+       CLEAR FILE INPUT
+    ========================= */
 
     event.target.value = "";
 
 }
+```
