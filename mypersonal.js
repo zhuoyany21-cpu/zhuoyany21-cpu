@@ -28,6 +28,7 @@ why were the codes not working? apparently they did not align???? ISSUE FIXED!
 
 /*
 how do i insert a video???????
-
-
+connect it to your files
 */
+
+// reduce repeated information
