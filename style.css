@@ -4,7 +4,9 @@
 :root {
 
     --background: #e3e2e1;
+
     --black: #202020;
+
     --dark: #292929;
 
 }
@@ -64,7 +66,8 @@ nav a {
 
     font-weight: 400;
 
-    transition: opacity 0.2s ease;
+    transition:
+        opacity 0.2s ease;
 
 }
 
@@ -213,19 +216,15 @@ nav a:hover {
 
     min-height: 380px;
 
-    border: 8px solid #050505;
+    border:
+        8px solid #050505;
 
     border-radius: 90px;
 
-    padding: 40px 28px;
+    padding:
+        40px 28px;
 
     background: transparent;
-
-    /*
-       Keeps the left side of the
-       post aligned with the
-       giant "blog" title.
-    */
 
     margin-left: 0;
 
@@ -238,6 +237,8 @@ nav a:hover {
 
 /* =========================
    POST DATE
+
+   ALWAYS 40PX
 ========================= */
 
 .post-date {
@@ -255,6 +256,8 @@ nav a:hover {
 
 /* =========================
    POST TITLE
+
+   ALWAYS 40PX
 ========================= */
 
 .post-title {
@@ -274,11 +277,13 @@ nav a:hover {
 
 /* =========================
    POST CONTENT
+
+   ALWAYS 35PX
 ========================= */
 
 .post-content {
 
-    font-size: 30px;
+    font-size: 35px;
 
     line-height: 1.1;
 
@@ -332,6 +337,43 @@ nav a:hover {
 
 
 /* =========================
+   DELETE POST BUTTON
+========================= */
+
+.delete-post-button {
+
+    margin-top: 35px;
+
+    padding:
+        12px 24px;
+
+    border:
+        3px solid var(--dark);
+
+    border-radius: 15px;
+
+    background: transparent;
+
+    color: var(--dark);
+
+    font-family: inherit;
+
+    font-size: 22px;
+
+    cursor: pointer;
+
+}
+
+
+.delete-post-button:hover {
+
+    background:
+        rgba(0, 0, 0, 0.06);
+
+}
+
+
+/* =========================
    CREATE NEW POST
 ========================= */
 
@@ -360,7 +402,8 @@ nav a:hover {
 
     flex-direction: column;
 
-    border: 3px solid var(--dark);
+    border:
+        3px solid var(--dark);
 
     border-radius: 20px;
 
@@ -390,7 +433,8 @@ nav a:hover {
 
     color: var(--dark);
 
-    padding: 20px 25px;
+    padding:
+        20px 25px;
 
     font-family: inherit;
 
@@ -432,7 +476,8 @@ nav a:hover {
 
     color: var(--dark);
 
-    padding: 20px 25px;
+    padding:
+        20px 25px;
 
     font-family: inherit;
 
@@ -537,7 +582,8 @@ nav a:hover {
 
     min-height: 380px;
 
-    border: 8px solid #050505;
+    border:
+        8px solid #050505;
 
     border-radius: 90px;
 
@@ -650,11 +696,13 @@ nav a:hover {
 
     min-height: 90px;
 
-    border: 3px solid var(--dark);
+    border:
+        3px solid var(--dark);
 
     border-radius: 20px;
 
-    padding: 22px 35px;
+    padding:
+        22px 35px;
 
     font-size: 30px;
 
@@ -763,6 +811,8 @@ nav a:hover {
 
     /* =====================
        BLOG
+       
+       SAME SIZES AS DESKTOP
     ===================== */
 
     .post-card {
@@ -773,7 +823,8 @@ nav a:hover {
 
         border-radius: 50px;
 
-        padding: 30px 24px;
+        padding:
+            30px 24px;
 
         margin-left: 0;
 
@@ -786,7 +837,7 @@ nav a:hover {
 
     .post-date {
 
-        font-size: 25px;
+        font-size: 40px;
 
         text-align: left;
 
@@ -795,7 +846,7 @@ nav a:hover {
 
     .post-title {
 
-        font-size: 25px;
+        font-size: 40px;
 
         margin-bottom: 40px;
 
@@ -806,7 +857,7 @@ nav a:hover {
 
     .post-content {
 
-        font-size: 25px;
+        font-size: 35px;
 
         text-align: left;
 
@@ -816,6 +867,20 @@ nav a:hover {
     .post-content p {
 
         text-align: left;
+
+    }
+
+
+    /* =====================
+       DELETE BUTTON
+    ===================== */
+
+    .delete-post-button {
+
+        font-size: 22px;
+
+        padding:
+            12px 24px;
 
     }
 
