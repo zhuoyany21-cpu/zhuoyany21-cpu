@@ -43,52 +43,16 @@
         </h1>
 
 
-        <div class="video-date">
+        <!-- NEW VIDEOS WILL APPEAR HERE -->
 
-            September 7, 2026
-
-        </div>
-
-
-        <!-- VIDEO CARD -->
-
-        <section class="video-card">
-
-
-            <video
-                id="videoPlayer"
-                controls>
-            </video>
-
-
-            <!-- PLACEHOLDER -->
-
-            <div
-                class="video-placeholder"
-                id="videoPlaceholder">
-
-
-                <div class="play-circle">
-
-                    <div class="play-triangle"></div>
-
-                </div>
-
-
-                <p>
-
-                    Press to Play Video
-
-                </p>
-
-
-            </div>
-
+        <section
+            class="video-feed"
+            id="videoFeed">
 
         </section>
 
 
-        <!-- VIDEO INSERT -->
+        <!-- UPLOAD VIDEO -->
 
         <section class="video-upload">
 
@@ -96,6 +60,7 @@
             <label
                 for="videoInput"
                 class="upload-label">
+
 
                 <span>
 
@@ -118,7 +83,7 @@
                 type="file"
                 id="videoInput"
                 accept="video/*"
-                onchange="loadVideo(event)">
+                onchange="postVideo(event)">
 
 
         </section>
