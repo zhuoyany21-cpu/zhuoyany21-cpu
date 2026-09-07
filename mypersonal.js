@@ -11,6 +11,15 @@ my main comments
 
 
 /*
+super happy that I figured out how to use html, realized it was completely different from java
+comments look like this now:
+<!-- and to close -->
+pretty cool!
+*/
+
+
+
+/*
 
 main issues:
 font size, actual font of the text; spaceing
