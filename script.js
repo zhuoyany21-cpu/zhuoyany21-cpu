@@ -3,22 +3,18 @@
 
 
 // LOAD SAVED BLOG POSTS WHEN PAGE OPENS
-// needed a way to make sure that the posts actually stay after refreshing!!!
-// hopefully this works!!!
 
 document.addEventListener(
     "DOMContentLoaded",
     function() {
 
-
         loadPosts();
-
 
     }
 );
 
 
-// PUBLISH NEW BLOG POST
+// PUBLISH POST
 
 function publishPost() {
 
@@ -30,6 +26,9 @@ function publishPost() {
 
     const contentInput =
         document.getElementById("postContent");
+
+    const feed =
+        document.getElementById("postFeed");
 
 
     // GET WHAT USER TYPED (me)
@@ -78,7 +77,7 @@ function publishPost() {
     // needed a way to insert date without having to manually do it like the title! (not sure if it works, hopefully it does)
     // tested it and it does in fact work!! (asked claude how to do it)
 
-
+   
     // AUTO INSERT DATE
 
     const today =
@@ -96,8 +95,7 @@ function publishPost() {
         );
 
 
-    // CREATE NEW POST INFORMATION!!!!
-    // needed a way to save everything about the post
+    // CREATE POST INFORMATION
 
     const newPost = {
 
@@ -116,38 +114,48 @@ function publishPost() {
     };
 
 
-    // GET OLD SAVED POSTS
-    // this gets all the posts that were already saved
+    // GET SAVED POSTS
 
-    let posts =
+    let savedPosts =
         JSON.parse(
             localStorage.getItem(
                 "blogPosts"
             )
-        ) || [];
+        );
+
+
+    // IF THERE ARE NO SAVED POSTS YET
+
+    if (
+        !savedPosts
+    ) {
+
+        savedPosts =
+            [];
+
+    }
 
 
     // ADD NEW POST TO THE TOP
 
-    posts.unshift(
+    savedPosts.unshift(
         newPost
     );
 
 
-    // SAVE POSTS!!!!
-    // this is what should make the posts stay after refreshing
+    // SAVE THE POSTS
 
     localStorage.setItem(
         "blogPosts",
         JSON.stringify(
-            posts
+            savedPosts
         )
     );
 
 
-    // SHOW THE NEW POST
+    // CREATE THE POST ON THE PAGE
 
-    displayPost(
+    createPost(
         newPost
     );
 
@@ -161,9 +169,9 @@ function publishPost() {
 }
 
 
-// DISPLAY ONE POST
+// CREATE POST
 
-function displayPost(postData) {
+function createPost(postData) {
 
 
     const feed =
@@ -171,8 +179,6 @@ function displayPost(postData) {
             "postFeed"
         );
 
-
-    // CREATE POST
 
     const post =
         document.createElement(
@@ -185,7 +191,6 @@ function displayPost(postData) {
 
 
     // SAVE POST ID
-    // needed this so the delete button knows which post to delete
 
     post.dataset.id =
         postData.id;
@@ -193,14 +198,14 @@ function displayPost(postData) {
 
     // THE PARAGRAPH FORMAT
 
+    let contentHTML =
+        "";
+
+
     const paragraphs =
         postData.content.split(
             /\n\s*\n/
         );
-
-
-    let contentHTML =
-        "";
 
 
     paragraphs.forEach(
@@ -211,17 +216,18 @@ function displayPost(postData) {
                 paragraph.trim() !== ""
             ) {
 
-
                 contentHTML +=
+
                     "<p>" +
+
                     paragraph
                         .trim()
                         .replace(
                             /\n/g,
                             "<br>"
                         ) +
-                    "</p>";
 
+                    "</p>";
 
             }
 
@@ -266,7 +272,7 @@ function displayPost(postData) {
 
 
     // didnt know whether to put new post at the bottom or top. thought to many other wesbsites, new post on top was final decision
-    // NEW POST GOES ON TOP
+    // NEW POST GOES ON TOP 
 
     feed.prepend(
         post
@@ -277,7 +283,6 @@ function displayPost(postData) {
 
 
 // LOAD SAVED POSTS
-// needed a way for all my posts to come back after refreshing!!!
 
 function loadPosts() {
 
@@ -288,7 +293,7 @@ function loadPosts() {
         );
 
 
-    // ONLY RUN ON BLOG PAGE
+    // MAKE SURE WE ARE ON THE BLOG PAGE
 
     if (
         !feed
@@ -301,31 +306,40 @@ function loadPosts() {
 
     // GET SAVED POSTS
 
-    const posts =
+    const savedPosts =
         JSON.parse(
             localStorage.getItem(
                 "blogPosts"
             )
-        ) || [];
+        );
 
 
-    // DISPLAY ALL SAVED POSTS
-    // going backwards makes sure the newest post stays on top
+    // STOP IF THERE ARE NO SAVED POSTS
+
+    if (
+        !savedPosts
+    ) {
+
+        return;
+
+    }
+
+
+    // DISPLAY SAVED POSTS
+    // going backwards keeps the newest post on top
 
     for (
         let i =
-            posts.length - 1;
+            savedPosts.length - 1;
 
         i >= 0;
 
         i--
     ) {
 
-
-        displayPost(
-            posts[i]
+        createPost(
+            savedPosts[i]
         );
-
 
     }
 
@@ -338,11 +352,9 @@ function loadPosts() {
 
 function deletePost(button) {
 
-
-    // confirm to delete, could have been accident!!!
-
-
-    // ASK FOR DELETION CONFIRMATION
+   // confirm to delete, could have been accident!!!
+   
+   // ASK FOR DELETION CONFIRMATION
 
     const confirmDelete =
         confirm(
@@ -377,8 +389,6 @@ function deletePost(button) {
     ) {
 
 
-        // GET POST ID
-
         const postID =
             post.dataset.id;
 
@@ -390,27 +400,35 @@ function deletePost(button) {
 
         // GET SAVED POSTS
 
-        let posts =
+        let savedPosts =
             JSON.parse(
                 localStorage.getItem(
                     "blogPosts"
                 )
-            ) || [];
+            );
 
 
-        // REMOVE THE DELETED POST FROM SAVED POSTS
+        if (
+            !savedPosts
+        ) {
 
-        posts =
-            posts.filter(
+            savedPosts =
+                [];
+
+        }
+
+
+        // REMOVE DELETED POST
+
+        savedPosts =
+            savedPosts.filter(
                 function(savedPost) {
-
 
                     return String(
                         savedPost.id
                     ) !== String(
                         postID
                     );
-
 
                 }
             );
@@ -421,13 +439,12 @@ function deletePost(button) {
         localStorage.setItem(
             "blogPosts",
             JSON.stringify(
-                posts
+                savedPosts
             )
         );
 
 
     }
-
 
 }
 
@@ -453,9 +470,7 @@ function postVideo(event) {
 
 
     const feed =
-        document.getElementById(
-            "videoFeed"
-        );
+        document.getElementById("videoFeed");
 
 
     const today =
@@ -472,19 +487,14 @@ function postVideo(event) {
             }
         );
 
-
-    // this is the point where i thought to myself "why did i do this"
-
+   // this is the point where i thought to myself "why did i do this"
+   
     const videoURL =
-        URL.createObjectURL(
-            file
-        );
+        URL.createObjectURL(file);
 
 
     const post =
-        document.createElement(
-            "article"
-        );
+        document.createElement("article");
 
 
     post.className =
@@ -522,58 +532,47 @@ function postVideo(event) {
     `;
 
 
-    feed.prepend(
-        post
-    );
+    feed.prepend(post);
 
 
     const video =
-        post.querySelector(
-            "video"
-        );
+        post.querySelector("video");
 
 
     const playButton =
-        post.querySelector(
-            ".play-button"
-        );
+        post.querySelector(".play-button");
 
 
-    // PLAY BUTTON FOR VID
-    // not sure if works yet, havent tested it yet, havent inserted a vidio yet
+   
+// PLAY BUTTON FOR VID
+// not sure if works yet, havent tested it yet, havent inserted a vidio yet
 
     playButton.addEventListener(
         "click",
         function() {
 
-
             video.play();
-
 
             playButton.style.display =
                 "none";
-
 
         }
     );
 
 
-    // SHOW PLAY BUTTON WHEN VIDEO IS PAUSED
-    // needed a way to turn vid back on (claude suggested)
+   // SHOW PLAY BUTTON WHEN VIDEO IS PAUSED
+   // needed a way to turn vid back on (claude suggested)
 
     video.addEventListener(
         "pause",
         function() {
 
-
             if (
                 !video.ended
             ) {
 
-
                 playButton.style.display =
                     "flex";
-
 
             }
 
@@ -581,17 +580,15 @@ function postVideo(event) {
     );
 
 
-    // VID ENDS, SHOW BUTTON AGAIN
-    // needed a way to restart video (claude suggested)
+   // VID ENDS, SHOW BUTTON AGAIN
+   // needed a way to restart video (claude suggested)
 
     video.addEventListener(
         "ended",
         function() {
 
-
             playButton.style.display =
                 "flex";
-
 
         }
     );
@@ -600,7 +597,6 @@ function postVideo(event) {
     // CLEAR THE FILE INPUT
 
     event.target.value = "";
-
 
 }
 
