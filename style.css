@@ -1,6 +1,10 @@
-/* =========================
-   FONTS + BASIC SETTINGS
-========================= */
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700;800;900&display=swap');
+
+:root {
+    --background: #e3e2e1;
+    --black: #202020;
+    --dark: #292929;
+}
 
 * {
     box-sizing: border-box;
@@ -8,428 +12,433 @@
 
 body {
     margin: 0;
-
-    font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
-    background-color: #F5F0E6;
-
-    color: #111111;
+    background: var(--background);
+    color: var(--dark);
+    font-family: "League Spartan", Arial, sans-serif;
 }
 
-
 /* =========================
-   PAGE SPACING
-========================= */
-
-.page {
-    padding-left: 5%;
-    padding-right: 5%;
-}
-
-
-/* =========================
-   NAVIGATION
+   TOP NAVIGATION
 ========================= */
 
 nav {
+    width: 100%;
     display: flex;
-
     justify-content: flex-end;
+    gap: 32px;
 
-    align-items: center;
-
-    padding: 40px 5%;
-
-    gap: 38px;
+    padding-top: 42px;
+    padding-right: 58px;
 }
-
 
 nav a {
+    color: var(--dark);
     text-decoration: none;
 
-    color: #071C3A;
-
-    font-size: 26px;
-
+    font-size: 32px;
     font-weight: 400;
 
-    transition: 0.2s;
+    transition: opacity 0.2s ease;
 }
-
 
 nav a:hover {
     opacity: 0.55;
 }
 
-
-nav a.active {
-    font-weight: 600;
-}
-
-
 /* =========================
-   LARGE PAGE TITLES
+   PAGE LAYOUT
 ========================= */
 
-.page-title {
+.page {
+    padding-left: 60px;
+    padding-right: 60px;
+}
 
-    font-size: clamp(70px, 11vw, 190px);
+/* =========================
+   LARGE HEADINGS
+========================= */
 
-    font-weight: 800;
+.big-title {
+    color: var(--black);
+
+    font-size: clamp(90px, 11vw, 180px);
+    font-weight: 900;
 
     letter-spacing: -8px;
 
-    line-height: 0.9;
+    line-height: 0.8;
 
-    color: #071C3A;
-
-    margin-top: 20px;
-
-    margin-bottom: 70px;
+    margin-top: 40px;
+    margin-bottom: 90px;
 }
-
 
 /* =========================
    HOME PAGE
 ========================= */
 
-.home-content {
-
-    max-width: 900px;
-
-    margin: auto;
-
+.home-title {
     text-align: center;
 
-    padding-top: 80px;
+    margin-top: 280px;
+
+    margin-bottom: 80px;
 }
 
+.home-links {
+    display: flex;
 
-.home-content h2 {
+    flex-direction: column;
 
-    font-size: 40px;
+    align-items: center;
 
-    font-weight: 500;
-
-    color: #071C3A;
+    gap: 26px;
 }
 
+.home-links a {
+    color: var(--dark);
 
-.home-content p {
+    text-decoration: none;
 
-    font-size: 25px;
+    font-size: 32px;
 
-    line-height: 1.4;
-
-    max-width: 750px;
-
-    margin: auto;
+    font-weight: 400;
 }
 
+.home-links a:hover {
+    text-decoration: underline;
+}
 
 /* =========================
    ABOUT PAGE
 ========================= */
 
-.about-content {
-
+.about-text {
     max-width: 900px;
 
-    margin-left: 8%;
+    margin-left: 120px;
 
-    font-size: 30px;
-
-    line-height: 1.25;
-
-    padding-bottom: 100px;
-}
-
-
-/* =========================
-   BLOG
-========================= */
-
-.blog-container {
-
-    max-width: 900px;
-
-    margin-left: 2%;
-
-    padding-bottom: 80px;
-}
-
-
-.blog-post {
-
-    border: 5px solid #071C3A;
-
-    border-radius: 55px;
-
-    padding: 35px;
-
-    margin-bottom: 50px;
-
-    background-color: #FFFDF8;
-
-    max-width: 800px;
-}
-
-
-.blog-date {
-
-    font-size: 22px;
-
-    margin-bottom: 5px;
-
-    color: #071C3A;
-}
-
-
-.blog-post h2 {
+    margin-top: 90px;
 
     font-size: 34px;
 
-    margin-top: 0;
+    font-weight: 400;
 
-    margin-bottom: 25px;
-
-    font-weight: 500;
+    line-height: 0.95;
 }
-
-
-.blog-post p {
-
-    font-size: 22px;
-
-    line-height: 1.4;
-}
-
 
 /* =========================
-   VIDEO CARDS
+   BLOG POSTS
 ========================= */
 
-.video-container {
+.post-feed {
+    display: flex;
 
-    max-width: 800px;
+    flex-direction: column;
 
-    margin-left: 2%;
-
-    padding-bottom: 100px;
+    gap: 110px;
 }
 
+.post-card {
+    width: 780px;
 
-.video-date {
+    min-height: 380px;
 
-    font-size: 24px;
+    border: 8px solid #050505;
 
-    margin-bottom: 15px;
+    border-radius: 90px;
 
-    color: #071C3A;
+    padding: 40px 28px;
+
+    background: transparent;
 }
 
+.post-date {
+    font-size: 32px;
 
-.video-card {
+    margin-bottom: 4px;
+}
 
-    border: 5px solid #071C3A;
+.post-title {
+    font-size: 34px;
 
-    border-radius: 55px;
+    font-weight: 400;
+
+    margin-top: 0;
+
+    margin-bottom: 65px;
+}
+
+.post-content {
+    font-size: 32px;
+
+    line-height: 1.1;
+
+    word-break: break-word;
+}
+
+/* =========================
+   CREATE POST BOX
+========================= */
+
+.create-section {
+    margin-top: 110px;
+
+    margin-bottom: 80px;
+
+    width: 850px;
+}
+
+.create-box {
+    display: flex;
+
+    align-items: center;
+
+    border: 3px solid var(--dark);
+
+    border-radius: 20px;
+
+    min-height: 95px;
 
     overflow: hidden;
-
-    background-color: #FFFDF8;
-
-    padding: 20px;
-
-    margin-bottom: 40px;
 }
 
+.create-box textarea {
+    flex: 1;
 
-.video-card video {
-
-    width: 100%;
-
-    border-radius: 35px;
-
-    display: block;
-}
-
-
-.video-card iframe {
-
-    width: 100%;
-
-    height: 430px;
+    height: 90px;
 
     border: none;
 
-    border-radius: 35px;
-}
+    outline: none;
 
+    resize: none;
 
-.video-title {
+    background: transparent;
 
-    font-size: 28px;
+    color: var(--dark);
 
-    margin: 20px 15px 10px;
-}
-
-
-/* =========================
-   BUTTONS
-========================= */
-
-.button {
-
-    display: inline-block;
-
-    background-color: #071C3A;
-
-    color: #F5F0E6;
-
-    text-decoration: none;
-
-    padding: 15px 28px;
-
-    border-radius: 30px;
-
-    font-size: 20px;
-
-    margin-top: 30px;
-
-    transition: 0.2s;
-}
-
-
-.button:hover {
-
-    background-color: #000000;
-}
-
-
-/* =========================
-   PRIVATE EDIT AREA
-========================= */
-
-.editor {
-
-    display: none;
-
-    max-width: 800px;
-
-    margin-left: 2%;
-
-    margin-bottom: 60px;
-
-    padding: 30px;
-
-    border: 3px dashed #071C3A;
-
-    border-radius: 30px;
-}
-
-
-.editor.visible {
-
-    display: block;
-}
-
-
-.editor input,
-.editor textarea {
-
-    width: 100%;
-
-    margin-bottom: 15px;
-
-    padding: 15px;
-
-    font-size: 18px;
+    padding: 25px 35px;
 
     font-family: inherit;
 
-    border: 2px solid #071C3A;
-
-    border-radius: 15px;
-
-    background-color: #FFFDF8;
+    font-size: 30px;
 }
 
+.create-box textarea::placeholder {
+    color: var(--dark);
+}
 
-.editor button {
+.publish-button {
+    width: 115px;
 
-    padding: 15px 25px;
-
-    font-size: 18px;
+    height: 90px;
 
     border: none;
 
-    border-radius: 25px;
+    border-left: 3px solid var(--dark);
 
-    background-color: #071C3A;
+    background: transparent;
 
-    color: #F5F0E6;
+    font-size: 42px;
+
+    cursor: pointer;
+
+    color: var(--dark);
+}
+
+.publish-button:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+/* =========================
+   VIDEO PAGE
+========================= */
+
+.video-date {
+    font-size: 34px;
+
+    margin-bottom: 12px;
+}
+
+.video-card {
+    width: 780px;
+
+    min-height: 380px;
+
+    border: 8px solid #050505;
+
+    border-radius: 90px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    overflow: hidden;
+}
+
+.video-card video {
+    width: 100%;
+
+    max-height: 500px;
+
+    display: none;
+}
+
+.video-placeholder {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 20px;
+}
+
+.play-circle {
+    width: 230px;
+
+    height: 230px;
+
+    border-radius: 50%;
+
+    background: #050505;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+.play-triangle {
+    width: 0;
+
+    height: 0;
+
+    border-top: 48px solid transparent;
+
+    border-bottom: 48px solid transparent;
+
+    border-left: 72px solid var(--background);
+
+    margin-left: 15px;
+}
+
+.video-placeholder p {
+    font-size: 34px;
+
+    margin: 0;
+}
+
+/* =========================
+   VIDEO UPLOAD
+========================= */
+
+.video-upload {
+    margin-top: 110px;
+
+    width: 850px;
+}
+
+.upload-label {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    border: 3px solid var(--dark);
+
+    border-radius: 20px;
+
+    padding: 22px 35px;
+
+    font-size: 30px;
 
     cursor: pointer;
 }
 
+.upload-label:hover {
+    background: rgba(0, 0, 0, 0.04);
+}
+
+#videoInput {
+    display: none;
+}
 
 /* =========================
    MOBILE
 ========================= */
 
-@media (max-width: 700px) {
+@media (max-width: 900px) {
 
     nav {
+        padding-right: 25px;
 
-        padding: 25px 7%;
-
-        gap: 15px;
+        gap: 16px;
 
         flex-wrap: wrap;
     }
 
-
     nav a {
-
-        font-size: 17px;
-    }
-
-
-    .page-title {
-
-        letter-spacing: -4px;
-
-        margin-top: 50px;
-
-        margin-bottom: 50px;
-    }
-
-
-    .about-content {
-
-        margin-left: 2%;
-
         font-size: 22px;
     }
 
-
-    .blog-post {
-
-        border-radius: 35px;
-
-        padding: 25px;
+    .page {
+        padding-left: 25px;
+        padding-right: 25px;
     }
 
+    .big-title {
+        letter-spacing: -4px;
 
-    .video-card iframe {
-
-        height: 250px;
+        margin-top: 80px;
     }
 
+    .home-title {
+        margin-top: 180px;
+    }
+
+    .home-links a {
+        font-size: 25px;
+    }
+
+    .about-text {
+        margin-left: 0;
+
+        font-size: 26px;
+    }
+
+    .post-card,
+    .video-card,
+    .create-section,
+    .video-upload {
+        width: 100%;
+    }
+
+    .post-card {
+        min-height: 300px;
+
+        border-radius: 50px;
+    }
+
+    .post-date,
+    .post-title,
+    .post-content {
+        font-size: 25px;
+    }
+
+    .create-box textarea {
+        font-size: 22px;
+    }
+
+    .video-card {
+        border-radius: 50px;
+    }
 }
