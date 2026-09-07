@@ -11,10 +11,12 @@ my main comments
 
 
 /*
+
 main issues:
 font size, actual font of the text; spaceing
 how do i solve these issues:
 go onto youtube and find a video on how to, ask claude
+
 
 main issues:
 how to code some sections:
@@ -24,3 +26,8 @@ why were the codes not working? apparently they did not align???? ISSUE FIXED!
 
 */
 
+/*
+how do i insert a video???????
+
+
+*/
