@@ -1,31 +1,60 @@
-```javascript
 /* =========================
    BLOG POSTS
 ========================= */
 
 function publishPost() {
 
-    const input =
+
+    /* GET THE INPUTS */
+
+    const titleInput =
         document.getElementById("postTitle");
+
+    const contentInput =
+        document.getElementById("postContent");
 
     const feed =
         document.getElementById("postFeed");
 
 
-    const text =
-        input.value.trim();
+    /* GET WHAT THE USER TYPED */
+
+    const title =
+        titleInput.value.trim();
+
+    const content =
+        contentInput.value.trim();
 
 
-    /* DON'T PUBLISH EMPTY POSTS */
+    /* MAKE SURE THERE IS A TITLE */
 
-    if (text === "") {
+    if (title === "") {
+
+        alert("Please enter a title for your post.");
+
+        titleInput.focus();
 
         return;
 
     }
 
 
-    /* GET TODAY'S DATE */
+    /* MAKE SURE THERE IS CONTENT */
+
+    if (content === "") {
+
+        alert("Please write something for your post.");
+
+        contentInput.focus();
+
+        return;
+
+    }
+
+
+    /* =========================
+       AUTOMATIC DATE
+    ========================= */
 
     const today =
         new Date();
@@ -42,29 +71,9 @@ function publishPost() {
         );
 
 
-    /* SPLIT THE POST */
-
-    const lines =
-        text.split("\n");
-
-
-    /*
-        FIRST LINE = TITLE
-        EVERYTHING ELSE = CONTENT
-    */
-
-    const title =
-        lines[0].trim();
-
-
-    const content =
-        lines
-            .slice(1)
-            .join("\n")
-            .trim();
-
-
-    /* CREATE THE POST */
+    /* =========================
+       CREATE POST
+    ========================= */
 
     const post =
         document.createElement("article");
@@ -74,14 +83,12 @@ function publishPost() {
         "post-card";
 
 
-    /* CREATE CONTENT */
+    /* =========================
+       FORMAT PARAGRAPHS
+    ========================= */
 
     let contentHTML = "";
 
-
-    /*
-        EMPTY LINE = NEW PARAGRAPH
-    */
 
     const paragraphs =
         content.split(/\n\s*\n/);
@@ -90,9 +97,11 @@ function publishPost() {
     paragraphs.forEach(
         function(paragraph) {
 
+
             if (
                 paragraph.trim() !== ""
             ) {
+
 
                 contentHTML += `
 
@@ -104,13 +113,16 @@ function publishPost() {
 
                 `;
 
+
             }
 
         }
     );
 
 
-    /* PUT EVERYTHING INSIDE THE POST */
+    /* =========================
+       PUT EVERYTHING INTO POST
+    ========================= */
 
     post.innerHTML = `
 
@@ -137,17 +149,22 @@ function publishPost() {
     `;
 
 
-    /* PUT NEW POST AT THE TOP */
+    /* =========================
+       PUT NEW POST AT THE TOP
+    ========================= */
 
     feed.prepend(post);
 
 
-    /* CLEAR THE TEXT BOX */
+    /* =========================
+       CLEAR INPUTS
+    ========================= */
 
-    input.value = "";
+    titleInput.value = "";
+
+    contentInput.value = "";
 
 }
-
 
 
 /* =========================
@@ -161,9 +178,6 @@ function postVideo(event) {
         event.target.files[0];
 
 
-    /* DON'T DO ANYTHING IF
-       NO FILE WAS SELECTED */
-
     if (!file) {
 
         return;
@@ -174,8 +188,6 @@ function postVideo(event) {
     const feed =
         document.getElementById("videoFeed");
 
-
-    /* GET TODAY'S DATE */
 
     const today =
         new Date();
@@ -192,14 +204,9 @@ function postVideo(event) {
         );
 
 
-    /* CREATE A TEMPORARY URL
-       FOR THE VIDEO */
-
     const videoURL =
         URL.createObjectURL(file);
 
-
-    /* CREATE VIDEO POST */
 
     const post =
         document.createElement("article");
@@ -240,54 +247,50 @@ function postVideo(event) {
     `;
 
 
-    /* ADD VIDEO TO THE TOP */
-
     feed.prepend(post);
 
-
-    /* FIND VIDEO */
 
     const video =
         post.querySelector("video");
 
 
-    /* FIND PLAY BUTTON */
-
     const playButton =
         post.querySelector(".play-button");
 
 
-    /* =========================
-       PLAY VIDEO
-    ========================= */
+    /* PLAY BUTTON */
 
     playButton.addEventListener(
         "click",
         function() {
 
+
             video.play();
+
 
             playButton.style.display =
                 "none";
+
 
         }
     );
 
 
-    /* =========================
-       VIDEO PAUSED
-    ========================= */
+    /* IF VIDEO IS PAUSED, SHOW BUTTON */
 
     video.addEventListener(
         "pause",
         function() {
 
+
             if (
                 !video.ended
             ) {
 
+
                 playButton.style.display =
                     "flex";
+
 
             }
 
@@ -295,26 +298,23 @@ function postVideo(event) {
     );
 
 
-    /* =========================
-       VIDEO ENDED
-    ========================= */
+    /* IF VIDEO ENDS, SHOW BUTTON AGAIN */
 
     video.addEventListener(
         "ended",
         function() {
 
+
             playButton.style.display =
                 "flex";
+
 
         }
     );
 
 
-    /* =========================
-       CLEAR FILE INPUT
-    ========================= */
+    /* CLEAR FILE INPUT */
 
     event.target.value = "";
 
 }
-```
