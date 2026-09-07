@@ -32,3 +32,9 @@ connect it to your files
 */
 
 // reduce repeated information
+
+// just realized that I dont need a video section
+// wont delete it: it took too long, dont know what to post there
+
+
+
