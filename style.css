@@ -160,7 +160,7 @@ nav a:hover {
 }
 
 .post-title {
-    font-size: 34px;
+    font-size: 36px;
 
     font-weight: 400;
 
@@ -170,7 +170,7 @@ nav a:hover {
 }
 
 .post-content {
-    font-size: 32px !important;
+    font-size: 35px !important;
     line-height: 1.1;
     word-break: break-word;
 }
