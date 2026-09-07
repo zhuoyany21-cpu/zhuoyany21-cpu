@@ -229,7 +229,7 @@ function createPost(
 
     // THE PARAGRAPH FORMAT
 
-    const post =
+       const post =
         document.createElement(
             "article"
         );
