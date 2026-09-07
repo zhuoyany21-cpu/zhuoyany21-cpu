@@ -28,9 +28,13 @@ function publishPost() {
 
     /* MAKE SURE THERE IS A TITLE */
 
-    if (title === "") {
+    if (
+        title === ""
+    ) {
 
-        alert("Please enter a title for your post.");
+        alert(
+            "Please enter a title for your post."
+        );
 
         titleInput.focus();
 
@@ -41,9 +45,13 @@ function publishPost() {
 
     /* MAKE SURE THERE IS CONTENT */
 
-    if (content === "") {
+    if (
+        content === ""
+    ) {
 
-        alert("Please write something for your post.");
+        alert(
+            "Please write something for your post."
+        );
 
         contentInput.focus();
 
@@ -106,9 +114,14 @@ function publishPost() {
                 contentHTML += `
 
                     <p>
+
                         ${paragraph
                             .trim()
-                            .replace(/\n/g, "<br>")}
+                            .replace(
+                                /\n/g,
+                                "<br>"
+                            )}
+
                     </p>
 
                 `;
@@ -146,6 +159,15 @@ function publishPost() {
 
         </div>
 
+
+        <button
+            class="delete-post-button"
+            onclick="deletePost(this)">
+
+            Delete Post
+
+        </button>
+
     `;
 
 
@@ -168,6 +190,51 @@ function publishPost() {
 
 
 /* =========================
+   DELETE BLOG POST
+========================= */
+
+function deletePost(button) {
+
+
+    /* ASK FOR CONFIRMATION */
+
+    const confirmDelete =
+        confirm(
+            "Are you sure you want to delete this post?"
+        );
+
+
+    /* STOP IF THEY CANCEL */
+
+    if (
+        !confirmDelete
+    ) {
+
+        return;
+
+    }
+
+
+    /* FIND THE POST */
+
+    const post =
+        button.closest(".post-card");
+
+
+    /* DELETE THE POST */
+
+    if (
+        post
+    ) {
+
+        post.remove();
+
+    }
+
+}
+
+
+/* =========================
    VIDEO POSTS
 ========================= */
 
@@ -178,7 +245,9 @@ function postVideo(event) {
         event.target.files[0];
 
 
-    if (!file) {
+    if (
+        !file
+    ) {
 
         return;
 
@@ -258,7 +327,9 @@ function postVideo(event) {
         post.querySelector(".play-button");
 
 
-    /* PLAY BUTTON */
+    /* =========================
+       PLAY BUTTON
+    ========================= */
 
     playButton.addEventListener(
         "click",
@@ -276,7 +347,10 @@ function postVideo(event) {
     );
 
 
-    /* IF VIDEO IS PAUSED, SHOW BUTTON */
+    /* =========================
+       IF VIDEO IS PAUSED
+       SHOW BUTTON
+    ========================= */
 
     video.addEventListener(
         "pause",
@@ -298,7 +372,10 @@ function postVideo(event) {
     );
 
 
-    /* IF VIDEO ENDS, SHOW BUTTON AGAIN */
+    /* =========================
+       IF VIDEO ENDS
+       SHOW BUTTON AGAIN
+    ========================= */
 
     video.addEventListener(
         "ended",
@@ -313,7 +390,9 @@ function postVideo(event) {
     );
 
 
-    /* CLEAR FILE INPUT */
+    /* =========================
+       CLEAR FILE INPUT
+    ========================= */
 
     event.target.value = "";
 
