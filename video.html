@@ -6,13 +6,13 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-    content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
-    <title>Videos</title>
+    <title>Video Blog</title>
 
-    <link rel="stylesheet"
-    href="style.css">
+    <link rel="stylesheet" href="style.css">
 
 </head>
 
@@ -20,39 +20,27 @@
 <body>
 
 
-<nav>
+    <nav>
 
-    <a href="index.html">
-        Home.
-    </a>
+        <a href="index.html">Home.</a>
 
-    <a href="about.html">
-        About Me.
-    </a>
+        <a href="about.html">About Me.</a>
 
-    <a href="blog.html">
-        Blog.
-    </a>
+        <a href="blog.html">Blog.</a>
 
-    <a href="video.html"
-    class="active">
-        Video.
-    </a>
+        <a href="video.html">Video.</a>
 
-</nav>
+    </nav>
 
 
-<main class="page">
+    <main class="page">
 
 
-    <h1 class="page-title">
+        <h1 class="big-title">
 
-        video blog
+            video blog
 
-    </h1>
-
-
-    <section class="video-container">
+        </h1>
 
 
         <div class="video-date">
@@ -64,40 +52,82 @@
 
         <!-- VIDEO CARD -->
 
-        <div class="video-card">
+        <section class="video-card">
 
 
-            <!--
-            INSERT YOUTUBE VIDEO HERE
-
-            Replace VIDEO_ID with your ID
-            -->
-
-            <iframe
-
-                src="https://www.youtube.com/embed/VIDEO_ID"
-
-                title="My Video"
-
-                allowfullscreen>
-
-            </iframe>
+            <video
+                id="videoPlayer"
+                controls>
+            </video>
 
 
-            <h2 class="video-title">
+            <!-- PLACEHOLDER -->
 
-                My Video Title
-
-            </h2>
-
-
-        </div>
+            <div
+                class="video-placeholder"
+                id="videoPlaceholder">
 
 
-    </section>
+                <div class="play-circle">
+
+                    <div class="play-triangle"></div>
+
+                </div>
 
 
-</main>
+                <p>
+
+                    Press to Play Video
+
+                </p>
+
+
+            </div>
+
+
+        </section>
+
+
+        <!-- VIDEO INSERT -->
+
+        <section class="video-upload">
+
+
+            <label
+                for="videoInput"
+                class="upload-label">
+
+                <span>
+
+                    Insert video file and post
+
+                </span>
+
+
+                <span>
+
+                    ↗
+
+                </span>
+
+
+            </label>
+
+
+            <input
+                type="file"
+                id="videoInput"
+                accept="video/*"
+                onchange="loadVideo(event)">
+
+
+        </section>
+
+
+    </main>
+
+
+    <script src="script.js"></script>
 
 
 </body>
