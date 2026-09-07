@@ -1,6 +1,7 @@
 // BLOG POSTS!!!!!!!!!
 
 
+
 /* LOAD POSTS WHEN THE PAGE OPENS */
 
 document.addEventListener(
@@ -11,6 +12,7 @@ document.addEventListener(
 
     }
 );
+
 
 
 /* GET SAVED POSTS */
@@ -53,18 +55,36 @@ function getSavedPosts() {
 }
 
 
+
 /* SAVE POSTS */
 
 function savePosts(
     posts
 ) {
 
-    localStorage.setItem(
-        "blogPosts",
-        JSON.stringify(posts)
-    );
+    try {
+
+        localStorage.setItem(
+            "blogPosts",
+            JSON.stringify(posts)
+        );
+
+        return true;
+
+    } catch (
+        error
+    ) {
+
+        console.log(
+            "Could not save posts."
+        );
+
+        return false;
+
+    }
 
 }
+
 
 
 /* PUBLISH A NEW BLOG POST */
@@ -167,6 +187,14 @@ function publishPost() {
     };
 
 
+    // CREATE THE POST FIRST!!!!
+
+    createPost(
+        postData,
+        true
+    );
+
+
     // SAVE THE NEW POST
 
     const posts =
@@ -178,17 +206,23 @@ function publishPost() {
     );
 
 
-    savePosts(
-        posts
-    );
+    const saved =
+        savePosts(
+            posts
+        );
 
 
-    // CREATE POST BUTTON!!!!!!!
+    // TELL ME IF THE POST COULD NOT BE SAVED
 
-    createPost(
-        postData,
-        true
-    );
+    if (
+        !saved
+    ) {
+
+        console.log(
+            "The post appeared, but could not be saved."
+        );
+
+    }
 
 
     // CLEAR INPUT!
@@ -198,6 +232,7 @@ function publishPost() {
     contentInput.value = "";
 
 }
+
 
 
 /* CREATE THE BLOG POST ON THE PAGE */
@@ -328,6 +363,7 @@ function createPost(
 }
 
 
+
 /* LOAD SAVED POSTS */
 
 function loadPosts() {
@@ -362,6 +398,7 @@ function loadPosts() {
         );
 
 }
+
 
 
 /* following up on the blog.html, needed a spot the delete the post in case of mess up
@@ -452,6 +489,7 @@ function deletePost(
     post.remove();
 
 }
+
 
 
 /* VIDEO POSTS */
