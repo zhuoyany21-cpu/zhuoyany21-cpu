@@ -224,8 +224,40 @@ nav a:hover {
     font-size: 30px;
 }
 
+.create-box textarea {
+    flex: 1;
+
+    height: 90px;
+
+    border: none;
+
+    outline: none;
+
+    resize: none;
+
+    background: transparent;
+
+    color: var(--dark);
+
+    padding: 25px 35px;
+
+    font-family: inherit;
+
+    font-size: 30px;
+
+    text-align: center;
+
+    display: flex;
+
+    align-items: center;
+}
+
 .create-box textarea::placeholder {
     color: var(--dark);
+
+    opacity: 1;
+
+    text-align: center;
 }
 
 .publish-button {
@@ -246,8 +278,22 @@ nav a:hover {
     color: var(--dark);
 }
 
-.publish-button:hover {
-    background: rgba(0, 0, 0, 0.05);
+.publish-button {
+    width: 115px;
+
+    height: 90px;
+
+    border: none;
+
+    border-left: 3px solid var(--dark);
+
+    background: transparent;
+
+    font-size: 42px;
+
+    cursor: pointer;
+
+    color: var(--dark);
 }
 
 /* =========================
