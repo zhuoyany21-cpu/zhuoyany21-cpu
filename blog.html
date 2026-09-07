@@ -1,77 +1,153 @@
 <!DOCTYPE html>
-
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog | Joey Yao</title>
+
+    <title>Blog Posts</title>
+
     <link rel="stylesheet" href="style.css">
+
 </head>
+
 
 <body>
 
-```
-<header>
-    <nav>
-        <h1>Joey Yao</h1>
 
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="blog.html">Blog</a>
-            <a href="https://github.com/" target="_blank">GitHub</a>
-        </div>
-    </nav>
+<!-- Navigation -->
+
+<nav>
+
+    <div class="logo">
+        My Website
+    </div>
+
+
+    <div class="nav-links">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="blog.html">
+            Blog Posts
+        </a>
+
+    </div>
+
+</nav>
+
+
+
+<!-- Blog Header -->
+
+<header class="blog-header">
+
+    <h1>
+        Blog Posts
+    </h1>
+
+    <p>
+        Updates, projects, ideas, and more!
+    </p>
+
 </header>
 
-<main>
 
-    <section class="blog-header">
-        <h2>My Blog</h2>
-        <p>Thoughts, projects, and things I'm learning.</p>
-    </section>
 
-    <section class="blog-post">
-        
-        <video controls width="100%">
-              <source src="{{ '/videos/my-clip.mp4' | relative_url }}" type="video/mp4">
-        </video>
+<!-- BLOG POSTS -->
 
-        
-        <article>
-            <h2>Exploring the Brain and Technology</h2>
-            <p class="date">August 2026</p>
+<div class="blog-container">
 
-            <p>
-                The brain is one of the most complex systems we know of.
-                I'm especially interested in how technology and artificial
-                intelligence can help scientists better understand the
-                human brain.
-            </p>
 
-            <a href="index.html">← Back to Home</a>
-        </article>
+    <!-- POST 1 -->
 
-        <article>
-            <h2>Why I'm Interested in Robotics</h2>
-            <p class="date">August 2026</p>
+    <div class="post">
 
-            <p>
-                Robotics combines creativity, engineering, and problem
-                solving. I enjoy learning how robots work and how
-                technology can be used to solve real-world problems.
-            </p>
+        <h2>
+            My First Blog Post
+        </h2>
 
-            <a href="index.html">← Back to Home</a>
-        </article>
 
-    </section>
+        <p class="date">
+            September 2026
+        </p>
 
-</main>
 
-<footer>
-    <p>© 2026 Joey Yao | Built with GitHub Pages</p>
-</footer>
-```
+        <p>
+
+            Welcome to my first blog post! Here I will share
+            projects, research, ideas, and interesting discoveries.
+
+        </p>
+
+    </div>
+
+
+
+    <!-- POST 2 -->
+
+    <div class="post">
+
+        <h2>
+            My Latest Project
+        </h2>
+
+
+        <p class="date">
+            September 2026
+        </p>
+
+
+        <p>
+
+            This is where you can write about your latest
+            project or achievement!
+
+        </p>
+
+    </div>
+
+
+
+    <!-- VIDEO POST -->
+
+    <div class="post">
+
+        <h2>
+            My Video
+        </h2>
+
+
+        <p>
+            Watch my latest video below!
+        </p>
+
+
+        <iframe
+            width="100%"
+            height="400"
+
+            src="https://www.youtube.com/embed/VIDEO_ID"
+
+            title="YouTube video"
+
+            frameborder="0"
+
+            allowfullscreen>
+
+        </iframe>
+
+
+    </div>
+
+
+</div>
+
 
 </body>
+
 </html>
