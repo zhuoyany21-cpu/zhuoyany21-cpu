@@ -3,33 +3,22 @@
 
 
 :root {
-
     --background: #e3e2e1;
-
     --black: #202020;
-
     --dark: #292929;
-
 }
 
 
 * {
-
     box-sizing: border-box;
-
 }
 
 
 body {
-
     margin: 0;
-
     background: var(--background);
-
     color: var(--dark);
-
     font-family: "League Spartan", Arial, sans-serif;
-
 }
 
 
@@ -38,41 +27,29 @@ body {
 ========================= */
 
 nav {
-
     width: 100%;
-
     display: flex;
-
     justify-content: flex-end;
-
     gap: 32px;
 
     padding-top: 42px;
-
     padding-right: 58px;
-
 }
 
 
 nav a {
-
     color: var(--dark);
-
     text-decoration: none;
 
     font-size: 32px;
-
     font-weight: 400;
 
     transition: opacity 0.2s ease;
-
 }
 
 
 nav a:hover {
-
     opacity: 0.55;
-
 }
 
 
@@ -81,11 +58,8 @@ nav a:hover {
 ========================= */
 
 .page {
-
     padding-left: 60px;
-
     padding-right: 60px;
-
 }
 
 
@@ -94,21 +68,16 @@ nav a:hover {
 ========================= */
 
 .big-title {
-
     color: var(--black);
 
     font-size: clamp(90px, 11vw, 180px);
-
     font-weight: 900;
 
     letter-spacing: -8px;
-
     line-height: 0.8;
 
     margin-top: 40px;
-
     margin-bottom: 90px;
-
 }
 
 
@@ -117,46 +86,33 @@ nav a:hover {
 ========================= */
 
 .home-title {
-
     text-align: center;
 
     margin-top: 280px;
-
     margin-bottom: 80px;
-
 }
 
 
 .home-links {
-
     display: flex;
-
     flex-direction: column;
-
     align-items: center;
 
     gap: 26px;
-
 }
 
 
 .home-links a {
-
     color: var(--dark);
-
     text-decoration: none;
 
     font-size: 32px;
-
     font-weight: 400;
-
 }
 
 
 .home-links a:hover {
-
     text-decoration: underline;
-
 }
 
 
@@ -165,19 +121,17 @@ nav a:hover {
 ========================= */
 
 .about-text {
-
     max-width: 900px;
 
     margin-left: 120px;
-
     margin-top: 90px;
 
     font-size: 34px;
-
     font-weight: 400;
 
     line-height: 0.95;
 
+    text-align: left;
 }
 
 
@@ -186,98 +140,101 @@ nav a:hover {
 ========================= */
 
 .post-feed {
+    width: 100%;
 
     display: flex;
-
     flex-direction: column;
 
     gap: 110px;
-
 }
 
 
 .post-card {
-
     width: 90%;
-
     max-width: 1400px;
 
     min-height: 380px;
 
     border: 8px solid #050505;
-
     border-radius: 90px;
 
     padding: 40px 28px;
 
     background: transparent;
 
-    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
 
+    text-align: left;
 }
 
+
+/* DATE */
 
 .post-date {
-
     font-size: 40px;
 
+    margin-top: 0;
     margin-bottom: 4px;
 
+    text-align: left;
 }
 
 
-.post-title {
+/* TITLE */
 
+.post-title {
     font-size: 40px;
 
     font-weight: 400;
 
     margin-top: 0;
-
     margin-bottom: 65px;
 
+    text-align: left;
 }
 
 
-.post-content {
+/* CONTENT */
 
+.post-content {
     font-size: 38px;
 
     line-height: 1.1;
 
     word-break: break-word;
 
+    text-align: left;
 }
 
 
 .post-content p {
-
     margin-top: 0;
-
     margin-bottom: 30px;
 
+    text-align: left;
 }
 
 
 .post-content p:last-child {
-
     margin-bottom: 0;
-
 }
 
 
+/* CODE */
+
 .post-content pre {
+    text-align: left;
 
     overflow-x: auto;
 
     white-space: pre-wrap;
-
     word-break: break-word;
+}
 
+
+.post-content code {
     font-family: monospace;
-
-    font-size: 22px;
-
 }
 
 
@@ -286,49 +243,39 @@ nav a:hover {
 ========================= */
 
 .create-section {
-
     width: 100%;
 
     margin-top: 110px;
-
     margin-bottom: 80px;
 
     display: flex;
-
     justify-content: center;
-
 }
 
 
 .create-box {
-
     width: 850px;
 
     min-height: 95px;
 
     display: flex;
-
     align-items: stretch;
 
     border: 3px solid var(--dark);
-
     border-radius: 20px;
 
     overflow: hidden;
-
 }
 
 
-/* TEXTAREA */
+/* TEXT BOX */
 
 .create-box textarea {
-
     flex: 1;
 
     height: 90px;
 
     border: none;
-
     outline: none;
 
     resize: none;
@@ -340,35 +287,29 @@ nav a:hover {
     padding: 20px 25px;
 
     font-family: inherit;
-
     font-size: 30px;
-
-    text-align: left;
 
     line-height: 1.1;
 
+    text-align: left;
 }
 
 
 /* PLACEHOLDER */
 
 .create-box textarea::placeholder {
-
     color: var(--dark);
 
     opacity: 1;
 
     text-align: center;
-
 }
 
 
 /* PUBLISH BUTTON */
 
 .publish-button {
-
     width: 115px;
-
     min-width: 115px;
 
     height: 90px;
@@ -379,19 +320,16 @@ nav a:hover {
 
     background: transparent;
 
+    color: var(--dark);
+
     font-size: 42px;
 
     cursor: pointer;
-
-    color: var(--dark);
-
 }
 
 
 .publish-button:hover {
-
     background: rgba(0, 0, 0, 0.04);
-
 }
 
 
@@ -400,31 +338,26 @@ nav a:hover {
 ========================= */
 
 .video-feed {
-
     display: flex;
 
     flex-direction: column;
 
     gap: 90px;
-
 }
 
 
 .video-post {
-
     width: 780px;
-
     max-width: 100%;
-
 }
 
 
 .video-post-date {
-
     font-size: 34px;
 
     margin-bottom: 12px;
 
+    text-align: left;
 }
 
 
@@ -433,9 +366,7 @@ nav a:hover {
 ========================= */
 
 .video-wrapper {
-
     width: 780px;
-
     max-width: 100%;
 
     min-height: 380px;
@@ -449,14 +380,11 @@ nav a:hover {
     position: relative;
 
     background: #d9d8d7;
-
 }
 
 
 .video-wrapper video {
-
     width: 100%;
-
     height: 100%;
 
     max-height: 600px;
@@ -464,7 +392,6 @@ nav a:hover {
     display: block;
 
     object-fit: contain;
-
 }
 
 
@@ -473,17 +400,14 @@ nav a:hover {
 ========================= */
 
 .play-button {
-
     position: absolute;
 
     top: 50%;
-
     left: 50%;
 
     transform: translate(-50%, -50%);
 
     width: 230px;
-
     height: 230px;
 
     border-radius: 50%;
@@ -497,28 +421,22 @@ nav a:hover {
     display: flex;
 
     align-items: center;
-
     justify-content: center;
-
 }
 
 
 .play-button::after {
-
     content: "";
 
     width: 0;
-
     height: 0;
 
     border-top: 48px solid transparent;
-
     border-bottom: 48px solid transparent;
 
     border-left: 72px solid var(--background);
 
     margin-left: 15px;
-
 }
 
 
@@ -527,25 +445,22 @@ nav a:hover {
 ========================= */
 
 .video-upload {
-
-    margin-top: 110px;
-
     width: 850px;
-
     max-width: 100%;
 
+    margin-top: 110px;
 }
 
 
 .upload-label {
-
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
     position: relative;
+
+    min-height: 90px;
 
     border: 3px solid var(--dark);
 
@@ -555,37 +470,28 @@ nav a:hover {
 
     font-size: 30px;
 
-    min-height: 90px;
-
     cursor: pointer;
 
     text-align: center;
-
 }
 
 
 .upload-label span:last-child {
-
     position: absolute;
 
     right: 35px;
 
     font-size: 42px;
-
 }
 
 
 .upload-label:hover {
-
     background: rgba(0, 0, 0, 0.04);
-
 }
 
 
 #videoInput {
-
     display: none;
-
 }
 
 
@@ -597,68 +503,52 @@ nav a:hover {
 
 
     nav {
-
         padding-right: 25px;
 
         gap: 16px;
 
         flex-wrap: wrap;
-
     }
 
 
     nav a {
-
         font-size: 22px;
-
     }
 
 
     .page {
-
         padding-left: 25px;
-
         padding-right: 25px;
-
     }
 
 
     .big-title {
-
         letter-spacing: -4px;
 
         margin-top: 80px;
-
     }
 
 
     .home-title {
-
         margin-top: 180px;
-
     }
 
 
     .home-links a {
-
         font-size: 25px;
-
     }
 
 
     .about-text {
-
         margin-left: 0;
 
         font-size: 26px;
-
     }
 
 
-    /* BLOG */
+    /* BLOG POSTS */
 
     .post-card {
-
         width: 100%;
 
         min-height: 300px;
@@ -667,132 +557,125 @@ nav a:hover {
 
         padding: 30px 24px;
 
+        text-align: left;
     }
 
 
-    .post-date,
-    .post-title,
-    .post-content {
-
+    .post-date {
         font-size: 25px;
 
+        text-align: left;
     }
 
 
     .post-title {
+        font-size: 25px;
 
         margin-bottom: 40px;
 
+        text-align: left;
+    }
+
+
+    .post-content {
+        font-size: 25px;
+
+        text-align: left;
+    }
+
+
+    .post-content p {
+        text-align: left;
     }
 
 
     /* CREATE POST */
 
     .create-section {
-
         width: 100%;
-
     }
 
 
     .create-box {
-
         width: 100%;
-
     }
 
 
     .create-box textarea {
-
         height: 90px;
 
         font-size: 22px;
 
         padding: 20px;
 
+        text-align: left;
+    }
+
+
+    .create-box textarea::placeholder {
+        text-align: center;
     }
 
 
     .publish-button {
-
         width: 80px;
 
         min-width: 80px;
 
         height: 90px;
-
     }
 
 
     /* VIDEO */
 
     .video-post {
-
         width: 100%;
-
     }
 
 
     .video-wrapper {
-
         width: 100%;
 
         min-height: 300px;
 
         border-radius: 50px;
-
     }
 
 
     .video-post-date {
-
         font-size: 25px;
-
     }
 
 
     .play-button {
-
         width: 150px;
-
         height: 150px;
-
     }
 
 
     .play-button::after {
-
         border-top-width: 32px;
-
         border-bottom-width: 32px;
-
         border-left-width: 48px;
-
     }
 
 
-    /* UPLOAD */
+    /* VIDEO UPLOAD */
 
     .video-upload {
-
         width: 100%;
-
     }
 
 
     .upload-label {
-
         font-size: 22px;
-
     }
 
 
     .upload-label span:last-child {
-
         right: 20px;
 
         font-size: 34px;
-
     }
 
 }
