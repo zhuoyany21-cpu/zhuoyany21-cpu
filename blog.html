@@ -6,15 +6,115 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-    content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
     <title>Blog</title>
 
-    <link rel="stylesheet"
-    href="style.css">
+    <link rel="stylesheet" href="style.css">
 
 </head>
 
 
 <body>
+
+
+    <nav>
+
+        <a href="index.html">Home.</a>
+
+        <a href="about.html">About Me.</a>
+
+        <a href="blog.html">Blog.</a>
+
+        <a href="video.html">Video.</a>
+
+    </nav>
+
+
+    <main class="page">
+
+
+        <h1 class="big-title">
+
+            blog
+
+        </h1>
+
+
+        <!-- BLOG POSTS -->
+
+        <section
+            class="post-feed"
+            id="postFeed">
+
+
+            <!-- EXAMPLE POST -->
+
+            <article class="post-card">
+
+                <div class="post-date">
+
+                    September 7, 2026
+
+                </div>
+
+
+                <h2 class="post-title">
+
+                    Title of Blog Post HERE
+
+                </h2>
+
+
+                <p class="post-content">
+
+                    Welcome to my blog! This is where
+                    I will share my experiences,
+                    projects, research, and ideas.
+
+                </p>
+
+
+            </article>
+
+
+        </section>
+
+
+        <!-- CREATE POST -->
+
+        <section class="create-section">
+
+            <div class="create-box">
+
+                <textarea
+                    id="postInput"
+                    placeholder="type new post here and publish">
+                </textarea>
+
+
+                <button
+                    class="publish-button"
+                    onclick="publishPost()">
+
+                    ↗
+
+                </button>
+
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+
+</body>
+
+</html>
