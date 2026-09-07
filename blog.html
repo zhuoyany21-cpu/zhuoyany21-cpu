@@ -21,25 +21,29 @@
 
 <body>
 
+    <!-- just figured out how to use comments for html!!!! must close the arrows or everything below will also be comments until closed!!!! -->
+    <!-- html is wayyy different from java! instead of using { or }, you use <head>, <link, <body> ETC!!!! -->
 
-    <!-- TOP RIGHT LINKS -->
+    <!--> decided to add - at the end to separate them a little more -->
 
+    
+    <!--> TOP RIGHT LINKS!!! -->
     <nav>
 
         <a href="index.html">
-            Home.
+            Home -
         </a>
 
         <a href="about.html">
-            About Me.
+            About Me -
         </a>
 
         <a href="blog.html">
-            Blog.
+            Blog -
         </a>
 
         <a href="video.html">
-            Video.
+            Video
         </a>
 
     </nav>
@@ -48,7 +52,9 @@
     <main class="page">
 
 
-        <!-- MAIN TITLE -->
+        <!-- here is where the main links go (i uppercase them to make sure that i can easily find it in my code) -->
+        
+        <!-- MAIN LINKSSSS!! -->
 
         <h1 class="big-title">
 
@@ -63,17 +69,17 @@
             class="post-feed"
             id="postFeed">
 
-
-            <!-- FIRST BLOG POST -->
+            <!-- the first blog post is there so all the other posts look the same (like have an example) -->
+            <!-- MY FIRST BLOG POST!!! -->
 
             <article class="post-card">
 
 
-                <!-- DATE -->
+                <!-- DATE (hopefully calculated by itself) -->
 
                 <div class="post-date">
 
-                    September 5, 2026
+                    September 7, 2026
 
                 </div>
 
@@ -137,7 +143,7 @@ else:
 
                     <p>
 
-                        This checks whether the age is at least 13. Since the age is 14, the program prints that I am a teenager.
+                        This checks whether the age is at least 13. Since the age is 14, the program prints that I am a teenager!!
 
                     </p>
 
@@ -176,7 +182,8 @@ else:
 
                 </div>
 
-
+                <!-- realized that I needed a delete button or else if I messed up I could not restart! Added this towards the end! -->
+                
                 <!-- DELETE BUTTON -->
 
                 <button
@@ -193,7 +200,11 @@ else:
 
         </section>
 
+        
+        <!-- now this is how I can create my second post (Sep 7) havent tested but we will see if it works!!! -->
+        <!-- TESTED AND IT WORKS!!!! -->
 
+        
         <!-- CREATE NEW POST -->
 
         <section class="create-section">
@@ -201,28 +212,31 @@ else:
 
             <div class="create-box">
 
-
+            
                 <!-- POST TITLE -->
 
                 <input
                     type="text"
                     id="postTitle"
                     placeholder="type post title here">
-
-
+                <!-- orignially didnt have a post title spot. but realized needed it for organization!!!!!!!!!! -->
+                
+                <!-- figured out how to insert a placeholder!!! yayyy it works pretty well! -->
                 <!-- POST CONTENT -->
 
                 <textarea
                     id="postContent"
                     placeholder="type new post here and publish"></textarea>
 
-
+                <!-- needed a way to publish! -->
+                <!-- figured it out! able to publish now! -->
                 <!-- PUBLISH BUTTON -->
 
                 <button
                     class="publish-button"
                     onclick="publishPost()">
-
+                    
+                <!-- inserted an actual arrow for the publish logo!!! -->
                     ↗
 
                 </button>
