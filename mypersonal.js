@@ -17,7 +17,8 @@ comments look like this now:
 pretty cool!
 */
 
-
+// decided to add style like font, etc. 
+// went through many size font testing!!!!
 
 /*
 
@@ -45,5 +46,7 @@ connect it to your files
 // just realized that I dont need a video section
 // wont delete it: it took too long, dont know what to post there
 
+// problem: hwo to link to the different parta
+// used html
 
 
