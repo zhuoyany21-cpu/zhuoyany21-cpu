@@ -1,7 +1,11 @@
+/* =========================
+   BLOG POSTS
+========================= */
+
 function publishPost() {
 
     const input =
-        document.getElementById("postInput");
+        document.getElementById("postTitle");
 
     const feed =
         document.getElementById("postFeed");
@@ -66,19 +70,25 @@ function publishPost() {
     `;
 
 
+    /* NEW POST APPEARS FIRST */
+
     feed.prepend(post);
 
+
+    /* CLEAR TEXT BOX */
 
     input.value = "";
 
 }
 
 
+
 /* =========================
-   LOAD VIDEO
+   VIDEO POSTS
 ========================= */
 
-function loadVideo(event) {
+function postVideo(event) {
+
 
     const file =
         event.target.files[0];
@@ -91,32 +101,145 @@ function loadVideo(event) {
     }
 
 
-    const video =
-        document.getElementById("videoPlayer");
+    const feed =
+        document.getElementById("videoFeed");
 
 
-    const placeholder =
-        document.getElementById(
-            "videoPlaceholder"
+    const today =
+        new Date();
+
+
+    const date =
+        today.toLocaleDateString(
+            "en-US",
+            {
+                month: "long",
+                day: "numeric",
+                year: "numeric"
+            }
         );
 
+
+    /* CREATE VIDEO URL */
 
     const videoURL =
         URL.createObjectURL(file);
 
 
-    video.src =
-        videoURL;
+    /* CREATE POST */
+
+    const post =
+        document.createElement("article");
 
 
-    video.style.display =
-        "block";
+    post.className =
+        "video-post";
 
 
-    placeholder.style.display =
-        "none";
+    post.innerHTML = `
+
+        <div class="video-post-date">
+
+            ${date}
+
+        </div>
 
 
-    video.load();
+        <div class="video-wrapper">
+
+
+            <video>
+
+                <source
+                    src="${videoURL}"
+                    type="${file.type}">
+
+            </video>
+
+
+            <button
+                class="play-button"
+                aria-label="Play video">
+
+            </button>
+
+
+        </div>
+
+    `;
+
+
+    /* ADD VIDEO TO TOP */
+
+    feed.prepend(post);
+
+
+    /* GET VIDEO + PLAY BUTTON */
+
+    const video =
+        post.querySelector("video");
+
+
+    const playButton =
+        post.querySelector(".play-button");
+
+
+    /* CLICK TRIANGLE = PLAY VIDEO */
+
+    playButton.addEventListener(
+        "click",
+        function() {
+
+
+            video.play();
+
+
+            /* HIDE TRIANGLE */
+
+            playButton.style.display =
+                "none";
+
+
+        }
+    );
+
+
+    /* IF VIDEO IS PAUSED, SHOW BUTTON */
+
+    video.addEventListener(
+        "pause",
+        function() {
+
+
+            if (
+                !video.ended
+            ) {
+
+                playButton.style.display =
+                    "flex";
+
+            }
+
+        }
+    );
+
+
+    /* IF VIDEO ENDS, SHOW BUTTON AGAIN */
+
+    video.addEventListener(
+        "ended",
+        function() {
+
+
+            playButton.style.display =
+                "flex";
+
+        }
+    );
+
+
+    /* CLEAR INPUT */
+
+    event.target.value = "";
 
 }
