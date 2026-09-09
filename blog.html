@@ -23,6 +23,7 @@
 
     <!-- just figured out how to use comments for html!!!! must close the arrows or everything below will also be comments until closed!!!! -->
     <!-- html is wayyy different from java! instead of using { or }, you use <head>, <link, <body> ETC!!!! -->
+
     <!-- TOP RIGHT LINKS -->
     <nav>
 
@@ -48,8 +49,6 @@
     <main class="page">
 
 
-        <!-- here is where the main links go (i uppercase them to make sure that i can easily find it in my code) -->
-        
         <!-- MAIN LINKSSSS!! -->
 
         <h1 class="big-title">
@@ -65,13 +64,13 @@
             class="post-feed"
             id="postFeed">
 
-            <!-- the first blog post is there so all the other posts look the same (like have an example) -->
+
             <!-- MY FIRST BLOG POST!!! -->
 
             <article class="post-card">
 
 
-                <!-- DATE (hopefully calculated by itself) -->
+                <!-- DATE -->
 
                 <div class="post-date">
 
@@ -103,7 +102,7 @@
 
                     <p>
 
-                        One of the first concepts I learned was <strong>variables</strong>. I learned that variables help you store information so that you can use it in your program. As an example, I used:
+                        One of the first concepts I learned was variables. I learned that variables help you store information so that you can use it in your program. As an example, I used:
 
                     </p>
 
@@ -124,7 +123,7 @@ print(age)</code></pre>
 
                     <p>
 
-                        Another concept I learned was <strong>if statements</strong>. They allow a program to make decisions based on whether something is true or false. I used this code:
+                        Another concept I learned was if statements. They allow a program to make decisions based on whether something is true or false. I used this code:
 
                     </p>
 
@@ -146,7 +145,7 @@ else:
 
                     <p>
 
-                        The third concept I learned was <strong>loops</strong>, which are useful if you want to repeat something. For example:
+                        The third concept I learned was loops, which are useful if you want to repeat something. For example:
 
                     </p>
 
@@ -164,7 +163,7 @@ else:
 
                     <p>
 
-                        One problem I ran into was forgetting that Python uses <strong>indentation</strong>. Without the correct indentation, the code would not run. Once I figured out that the lines inside my if statements and loops needed to be indented, I was able to fix the problem.
+                        One problem I ran into was forgetting that Python uses indentation. Without the correct indentation, the code would not run. Once I figured out that the lines inside my if statements and loops needed to be indented, I was able to fix the problem.
 
                     </p>
 
@@ -178,8 +177,102 @@ else:
 
                 </div>
 
-                <!-- realized that I needed a delete button or else if I messed up I could not restart! Added this towards the end! -->
-                
+
+                <!-- DELETE BUTTON -->
+
+                <button
+                    class="delete-post-button"
+                    onclick="deletePost(this)">
+
+                    Delete Post
+
+                </button>
+
+
+            </article>
+
+
+            <!-- MY SECOND BLOG POST!!! -->
+
+            <article class="post-card">
+
+
+                <!-- DATE -->
+
+                <div class="post-date">
+
+                    September 9, 2026
+
+                </div>
+
+
+                <!-- TITLE -->
+
+                <h2 class="post-title">
+
+                    Learning About Git and GitHub
+
+                </h2>
+
+
+                <!-- POST CONTENT -->
+
+                <div class="post-content">
+
+
+                    <p>
+
+                        When I first started working on my website, I also started learning about Git. I learned that Git is a system that keeps track of changes made to a project. This can be really helpful if something goes wrong because I can look back at an earlier version instead of starting over.
+
+                    </p>
+
+
+                    <p>
+
+                        One thing that confused me at first was the difference between Git and GitHub. They are connected, but they aren't the same thing. Git is the tool that tracks changes to my files, while GitHub is an online platform where I can store my projects. So, Git keeps track of my work, and GitHub lets me keep that work online.
+
+                    </p>
+
+
+                    <p>
+
+                        I learned five main Git commands while creating my website:
+
+                    </p>
+
+
+                    <ul>
+
+                        <li>git init — Starts a repository.</li>
+
+                        <li>git status — Shows me what has changed.</li>
+
+                        <li>git add — Prepares my files to be saved.</li>
+
+                        <li>git commit — Saves those changes as a new version.</li>
+
+                        <li>git push — Sends those changes to GitHub.</li>
+
+                    </ul>
+
+
+                    <p>
+
+                        I used Git throughout the process of creating and updating my website. Whenever I made a change, I could save it and then push the updated version to GitHub. Because of this, I was not as worried about losing information.
+
+                    </p>
+
+
+                    <p>
+
+                        I also ran into a problem while using Git. When I tried to push my changes, I got an error, and I wasn't sure what I had done wrong. I checked the error message and looked through my code to see what was happening. Eventually, I realized that my project and the GitHub code weren't completely synced. Once I fixed the problem, I was able to change my code again.
+
+                    </p>
+
+
+                </div>
+
+
                 <!-- DELETE BUTTON -->
 
                 <button
@@ -197,80 +290,6 @@ else:
         </section>
 
 
-        <section
-            class="post-feed"
-            id="postFeed">
-
-            <article class="post-card">
-
-                <div class="post-date">
-
-                    September 9, 2026
-
-                </div>
-
-
-                <!-- TITLE -->
-
-                <h2 class="post-title">
-
-                    What is Git?
-
-                </h2>
-
-
-                <!-- POST CONTENT -->
-
-                <div class="post-content">
-
-          <p>
-            When I first started working on my website, I also started learning about Git.
-            I learned that Git is a system that keeps track of changes made to a project.
-            This can be really helpful if something goes wrong because I can look back at
-            an earlier version instead of starting over.
-          </p>
-
-          <p>
-            One thing that confused me at first was the difference between Git and GitHub.
-            They are connected, but they aren't the same thing. Git is the tool that tracks
-            changes to my files, while GitHub is an online platform where I can store my
-            projects. So, Git keeps track of my work, and GitHub lets me keep that work online.
-          </p>
-
-          <h3>The Five Main Git Commands I Learned</h3>
-
-          <ul>
-            <li>git init — Starts a repository.</li>
-            <li>git status — Shows me what has changed.</li>
-            <li>git add — Prepares my files to be saved.</li>
-            <li>git commit — Saves those changes as a new version.</li>
-            <li>git push — Sends those changes to GitHub.</li>
-          </ul>
-
-          <h3>Using Git While Creating My Website</h3>
-
-          <p>
-            I used Git throughout the process of creating and updating my website.
-            Whenever I made a change, I could save it and then push the updated version
-            to GitHub. Because of this, I was not as worried about losing information.
-          </p>
-
-          <h3>A Problem I Encountered</h3>
-
-          <p>
-            I also ran into a problem while using Git. When I tried to push my changes,
-            I got an error, and I wasn't sure what I had done wrong. I checked the error
-            message and looked through my code to see what was happening. Eventually,
-            I realized that my project and the GitHub code weren't completely synced.
-            Once I fixed the problem, I was able to change my code again.
-          </p>
-        </section>
-
-    
-        <!-- now this is how I can create my second post (Sep 7) havent tested but we will see if it works!!! -->
-        <!-- TESTED AND IT WORKS!!!! -->
-
-        
         <!-- CREATE NEW POST -->
 
         <section class="create-section">
@@ -278,31 +297,28 @@ else:
 
             <div class="create-box">
 
-            
+
                 <!-- POST TITLE -->
 
                 <input
                     type="text"
                     id="postTitle"
                     placeholder="type post title here">
-                <!-- orignially didnt have a post title spot. but realized needed it for organization!!!!!!!!!! -->
-                
-                <!-- figured out how to insert a placeholder!!! yayyy it works pretty well! -->
+
+
                 <!-- POST CONTENT -->
 
                 <textarea
                     id="postContent"
                     placeholder="type new post here and publish"></textarea>
 
-                <!-- needed a way to publish! -->
-                <!-- figured it out! able to publish now! -->
+
                 <!-- PUBLISH BUTTON -->
 
                 <button
                     class="publish-button"
                     onclick="publishPost()">
-                    
-                <!-- inserted an actual arrow for the publish logo!!! -->
+
                     ↗
 
                 </button>
